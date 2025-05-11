@@ -1,0 +1,38 @@
+
+spring:
+  application:
+    name: ouro-gourmet
+  flyway:
+      enabled: true
+      database: mysql
+      locations: classpath:db/migration
+      baseline-on-migrate: true
+      url: jdbc:mysql://localhost:3306/appdb
+      user: appuser
+      password: apppassword
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/appdb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    username: appuser
+    password: apppassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+springdoc:
+  default-produces-media-type: application/json
+  swagger-ui:
+    display-request-duration: true
+    doc-expansion: none
+    groups-order: DESC
+    operationsSorter: alpha
+    tagsSorter: alpha
+    disable-swagger-default-url: true
+    path: /swagger-ui
+    title: FIAP - Ouro Gourmet
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
