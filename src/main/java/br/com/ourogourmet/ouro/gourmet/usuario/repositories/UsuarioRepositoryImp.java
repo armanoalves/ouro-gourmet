@@ -1,6 +1,6 @@
-package br.com.ourogourmet.ouro.gourmet.repositories;
+package br.com.ourogourmet.ouro.gourmet.usuario.repositories;
 
-import br.com.ourogourmet.ouro.gourmet.entities.Usuario;
+import br.com.ourogourmet.ouro.gourmet.usuario.entities.Usuario;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
@@ -37,21 +37,30 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     @Override
     public Integer save(Usuario usuario) {
         return this.jdbcClient
-                .sql("INSERT into usuario (id, email, login, ativo) VALUES (:id , :email, :login, :ativo)")
+                .sql("INSERT into usuario (id, nome, endereco, senha, email, login, ativo) VALUES (:id, :nome,:endereco,:senha, :email, :login, :ativo)")
                 .param("id",usuario.getId())
                 .param("email",usuario.getEmail())
                 .param("login",usuario.getLogin())
                 .param("ativo", usuario.getAtivo())
+                .param("nome",usuario.getNome())
+                .param("endereco",usuario.getEndereco())
+                .param("senha",usuario.getSenha())
                 .update();
     }
 
     @Override
     public Integer update(Usuario usuario, String id) {
-        return this.jdbcClient.sql("UPDATE usuario SET email = :email, login = :login, ativo = :ativo WHERE id = :id")
+        return this.jdbcClient.sql("UPDATE usuario " +
+                        "SET nome = :nome, endereco = :endereco, " +
+                        "email = :email, login = :login, ativo = :ativo, data_alteracao = :dataAlteracao " +
+                        "WHERE id = :id")
                 .param("id",id)
+                .param("nome", usuario.getNome())
+                .param("endereco",usuario.getEndereco())
                 .param("email",usuario.getEmail())
                 .param("login",usuario.getLogin())
                 .param("ativo", usuario.getAtivo())
+                .param("dataAlteracao",usuario.getDataAlteracao())
                 .update();
     }
 

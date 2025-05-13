@@ -1,6 +1,6 @@
-package br.com.ourogourmet.ouro.gourmet.repositories;
+package br.com.ourogourmet.ouro.gourmet.usuario.repositories;
 
-import br.com.ourogourmet.ouro.gourmet.entities.Usuario;
+import br.com.ourogourmet.ouro.gourmet.usuario.entities.Usuario;
 
 import java.util.List;
 import java.util.Optional;

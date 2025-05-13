@@ -29,8 +29,8 @@ services:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
     ports:
-      - "5673:5673"  # Porta AMQP
-      - "15673:15673"  # Porta da interface de gerenciamento
+      - "5675:5675"  # Porta AMQP
+      - "15675:15675"  # Porta da interface de gerenciamento
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
     networks:
@@ -44,9 +44,9 @@ services:
 
   app:
     build: .
-    container_name: spring-app
+    container_name: ouro-gourmet-app
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/appdb?useSSL=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: appuser
