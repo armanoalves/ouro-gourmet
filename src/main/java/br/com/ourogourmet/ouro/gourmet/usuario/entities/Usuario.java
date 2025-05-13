@@ -31,13 +31,13 @@ public class Usuario {
     LocalDate dataAlteracao;
     String endereco;
 
-    public Usuario(AlterarUsuarioDTO criarUsuario){
-        this.email = criarUsuario.email();
-        this.login = criarUsuario.login();
-        this.ativo = criarUsuario.ativo();
+    public Usuario(AlterarUsuarioDTO alterarUsuarioDTO){
+        this.email = alterarUsuarioDTO.email();
+        this.login = alterarUsuarioDTO.login();
+        this.ativo = alterarUsuarioDTO.ativo();
         this.dataAlteracao = LocalDate.now();
-        this.nome = criarUsuario.nome();
-        this.endereco = criarUsuario.endereco();
+        this.nome = alterarUsuarioDTO.nome();
+        this.endereco = alterarUsuarioDTO.endereco();
     }
 
     public Usuario(CriarUsuarioDTO criarUsuario){
