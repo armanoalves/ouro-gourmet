@@ -2,6 +2,7 @@ package br.com.ourogourmet.ouro.gourmet.usuario.entities;
 
 import br.com.ourogourmet.ouro.gourmet.usuario.usecase.AlterarUsuarioUseCase.AlterarUsuarioDTO;
 import br.com.ourogourmet.ouro.gourmet.usuario.usecase.CriarUsuarioUseCase.CriarUsuarioDTO;
+import br.com.ourogourmet.ouro.gourmet.usuario.usecase.TrocarSenhaUsuarioUseCase.TrocarSenhaUsuarioDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -49,6 +51,10 @@ public class Usuario {
         this.dataAlteracao = LocalDate.now();
         this.nome = criarUsuario.nome();
         this.endereco = criarUsuario.endereco();
+    }
+
+    public void alterarSenha(String novaSenha) {
+        this.senha = novaSenha;
     }
 
 }

@@ -12,5 +12,7 @@ public interface UsuarioRepository {
     Integer save(Usuario usuario);
     Integer update(Usuario usuario, String id);
     Integer delete(String id);
+    Integer atualizarSenha(Usuario usuario, String id);
+    Optional<Usuario> findByLogin(String login);
 
 }

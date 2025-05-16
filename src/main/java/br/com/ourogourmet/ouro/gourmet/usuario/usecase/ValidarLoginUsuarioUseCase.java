@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public interface ValidarLoginUsuarioUseCase {
 
-    void update(ValidarLoginUsuarioDTO usuario, String id);
+    void validar(ValidarLoginUsuarioDTO dto);
 
     record ValidarLoginUsuarioDTO(
 

@@ -4,15 +4,14 @@ spring:
     name: ouro-gourmet
   flyway:
       enabled: true
-      database: mysql
       locations: classpath:db/migration
       baseline-on-migrate: true
-      url: jdbc:mysql://localhost:3306/appdb
+      url: jdbc:mysql://mysql-db:3307/appdb
       user: appuser
       password: apppassword
 
   datasource:
-    url: jdbc:mysql://localhost:3306/appdb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://mysql-db:3307/appdb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
     username: appuser
     password: apppassword
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -36,3 +35,6 @@ springdoc:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+
+server:
+  port: 8081

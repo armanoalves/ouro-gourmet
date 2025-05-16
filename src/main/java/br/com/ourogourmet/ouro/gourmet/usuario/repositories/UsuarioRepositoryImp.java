@@ -70,4 +70,23 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
                 .param("id",id)
                 .update();
     }
+
+    @Override
+    public Integer atualizarSenha(Usuario usuario, String id) {
+        return this.jdbcClient.sql("UPDATE usuario SET senha = :senha, data_alteracao = :dataAlteracao WHERE id = :id")
+                .param("senha", usuario.getSenha())
+                .param("dataAlteracao", usuario.getDataAlteracao())
+                .param("id", id)
+                .update();
+    }
+
+    @Override
+    public Optional<Usuario> findByLogin(String login) {
+        return this.jdbcClient
+                .sql("SELECT * FROM usuario WHERE login = :login")
+                .param("login", login)
+                .query(Usuario.class)
+                .optional();
+    }
+
 }
