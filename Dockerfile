@@ -1,14 +1,21 @@
-# Build stage
-FROM maven:3.8.3-openjdk-17 AS build
+
+FROM maven:3.8.7-amazoncorretto-17 AS build
+
 WORKDIR /app
+
 COPY pom.xml .
-COPY src src
+COPY src ./src
+
+RUN mvn dependency:go-offline -B
 RUN mvn clean package -DskipTests
 
-# Run stage
 FROM amazoncorretto:17.0.0-alpine
+
 WORKDIR /app
-ARG JAR_FILE=/app/target/*.jar
-COPY --from=build ${JAR_FILE} app.jar
+
+COPY --from=build app/target/ouro-gourmet-0.0.1-SNAPSHOT.jar ./ouro-gourmet.jar 
+
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+CMD ["java", "-jar", "ouro-gourmet.jar"]
+
