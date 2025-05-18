@@ -1,0 +1,26 @@
+
+FROM maven:3.8.7-amazoncorretto-17 AS builder
+
+WORKDIR /app
+# Copia apenas os arquivos necessários para resolver dependências primeiro
+COPY pom.xml .
+# Baixa todas as dependências (isso cria um cache separado)
+RUN mvn dependency:go-offline -B
+
+# Copia o restante do código fonte
+COPY src ./src 
+
+# Constrói a aplicação
+RUN mvn package -DskipTests
+
+# Estágio de execução (Runtime)
+FROM amazoncorretto:17.0.0-alpine
+WORKDIR /app
+# Copia o JAR construído do estágio builder
+COPY --from=builder /app/target/*.jar app.jar 
+
+EXPOSE 8080
+
+# Usa ENTRYPOINT para java e CMD para argumentos (melhor para receber sinais do Docker)
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom"]
+CMD ["-jar", "app.jar"]
