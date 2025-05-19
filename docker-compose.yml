@@ -9,6 +9,7 @@ services:
       MYSQL_USER: appuser
       MYSQL_PASSWORD: apppassword
       MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_TCP_PORT: 3306
     ports:
       - "3306:3306"
     volumes:
@@ -16,7 +17,7 @@ services:
     networks:     
       app-network:
         aliases:
-          - mysql-app-alias
+          - mysql_app
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u","root"]
       interval: 3s
@@ -60,6 +61,7 @@ services:
       SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT: 30000
       SPRING_FLYWAY_ENABLED: "true"
       SPRING_FLYWAY_BASELINE_ON_MIGRATE: "true"
+      SPRING_DATASOURCE_URL_FLYWAY: jdbc:mysql://mysql_app:3306/appdb
     depends_on:
       mysql_app:
         condition: service_healthy
@@ -67,12 +69,6 @@ services:
         condition: service_healthy
     networks:
       - app-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
-      interval: 5s
-      timeout: 10s
-      retries: 5
-
 volumes:
   mysql_data:
   rabbitmq_data:
