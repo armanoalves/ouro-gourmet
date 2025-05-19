@@ -1,10 +1,8 @@
 spring:
   application:
     name: ouro-gourmet
-
   flyway:
       enabled: true
-      database: mysql
       locations: classpath:db/migration
       baseline-on-migrate: true
       url: jdbc:mysql://localhost:3306/appdb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
