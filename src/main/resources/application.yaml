@@ -3,9 +3,9 @@ spring:
   application:
     name: ouro-gourmet
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:mysql://localhost:3307/appdb?useSSL=false&allowPublicKeyRetrieval=true
+    username: appuser
+    password: apppassword
     driver-class-name: com.mysql.cj.jdbc.Driver
   flyway:
       enabled: true
