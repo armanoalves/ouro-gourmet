@@ -30,4 +30,4 @@ springdoc:
     title: FIAP - Ouro Gourmet
 
 server:
-  port: 8081
+  port: 8083
