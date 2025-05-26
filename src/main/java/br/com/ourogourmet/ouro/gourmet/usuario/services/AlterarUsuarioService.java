@@ -1,6 +1,7 @@
 package br.com.ourogourmet.ouro.gourmet.usuario.services;
 
 import br.com.ourogourmet.ouro.gourmet.usuario.entities.Usuario;
+import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioAlteracaoInvalidaException;
 import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioNaoExisteException;
 import br.com.ourogourmet.ouro.gourmet.usuario.repositories.UsuarioRepository;
 import br.com.ourogourmet.ouro.gourmet.usuario.usecase.AlterarUsuarioUseCase;
@@ -11,18 +12,24 @@ public class AlterarUsuarioService implements AlterarUsuarioUseCase {
 
     private final UsuarioRepository usuarioRepository;
 
-    public AlterarUsuarioService(UsuarioRepository usuarioRepository){
+    public AlterarUsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public void update(AlterarUsuarioDTO usuario, String id){
-
+    public void update(AlterarUsuarioDTO usuario, String id) {
         var alterarUsuario = new Usuario(usuario);
-        var update = this.usuarioRepository.update(alterarUsuario,id);
+        var update = this.usuarioRepository.update(alterarUsuario, id);
 
-        if (update == 0){
+        if (update == 0) {
             throw new UsuarioNaoExisteException(id);
+        }
+
+        if (!validarAlteracoes(alterarUsuario)) {
+            throw new UsuarioAlteracaoInvalidaException("Alteração inválida para o usuário com ID: " + id);
         }
     }
 
+    private boolean validarAlteracoes(Usuario usuario) {
+        return true;
+    }
 }
