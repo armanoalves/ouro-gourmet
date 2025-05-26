@@ -11,5 +11,4 @@ public class UsuarioCriacaoFalhaException extends RuntimeException {
     public UsuarioCriacaoFalhaException(String message) {
         super("Falha ao criar usuário: " + message);
     }
-
 }
