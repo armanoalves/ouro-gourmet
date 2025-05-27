@@ -1,6 +1,7 @@
 package br.com.ourogourmet.ouro.gourmet.usuario.repositories;
 
 import br.com.ourogourmet.ouro.gourmet.usuario.entities.Usuario;
+import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioNaoExisteException;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
@@ -17,11 +18,13 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     }
 
     @Override
-    public Optional<Usuario> findById(String id) {
+    public Usuario findById(String id) {
         return this.jdbcClient
                 .sql("SELECT * FROM usuario WHERE id = :id")
                 .param("id",id)
-                .query(Usuario.class).optional();
+                .query(Usuario.class)
+                .optional()
+                .orElseThrow(() -> new UsuarioNaoExisteException(id));
     }
 
     @Override

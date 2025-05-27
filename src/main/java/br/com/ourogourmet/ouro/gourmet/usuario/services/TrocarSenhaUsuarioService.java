@@ -17,21 +17,12 @@ public class TrocarSenhaUsuarioService implements TrocarSenhaUsuarioUseCase {
     @Override
     public void trocarSenha(TrocarSenhaUsuarioDTO trocarSenhaUsuarioDTO, String id) {
 
-        var usuarioOptional = usuarioRepository.findById(id);
-
-        if(usuarioOptional.isEmpty()) {
-            throw new UsuarioNaoExisteException(id);
-        }
-
-        var usuario = usuarioOptional.get();
+        var usuario = usuarioRepository.findById(id);
         usuario.alterarSenha(trocarSenhaUsuarioDTO.senha());
 
         var update = usuarioRepository.atualizarSenha(usuario, id);
-
         if (update == 0) {
             throw new UsuarioNaoExisteException(id);
         }
-
-
     }
 }

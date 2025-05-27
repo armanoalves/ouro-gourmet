@@ -65,7 +65,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Usuario>> findUsuarioById(
+    public ResponseEntity<Usuario> findUsuarioById(
             @PathVariable("id") String id){
 
         logger.info("/usuarios/".concat(id));

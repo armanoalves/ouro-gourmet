@@ -14,8 +14,9 @@ public class GetByIdUsuarioService implements GetByIdUsuarioUseCase {
     public GetByIdUsuarioService(UsuarioRepository usuarioRepository){
         this.usuarioRepository = usuarioRepository;
     }
+
     @Override
-    public Optional<Usuario> findById(String id){
+    public Usuario findById(String id){
         return this.usuarioRepository.findById(id);
     }
 }
