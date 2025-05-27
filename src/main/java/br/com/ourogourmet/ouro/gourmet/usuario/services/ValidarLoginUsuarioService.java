@@ -17,8 +17,7 @@ public class ValidarLoginUsuarioService implements ValidarLoginUsuarioUseCase {
     @Override
     public void validar(ValidarLoginUsuarioDTO validarLoginUsuarioDTO) {
 
-        var usuario = this.usuarioRepository.findByLogin(validarLoginUsuarioDTO.login())
-                .orElseThrow(() -> new UsuarioNaoExisteException(validarLoginUsuarioDTO.login()));
+        var usuario = this.usuarioRepository.findByLogin(validarLoginUsuarioDTO.login());
 
         if (!usuario.getSenha().equals(validarLoginUsuarioDTO.senha())) {
             throw new UsuarioSenhaInvalidaException();

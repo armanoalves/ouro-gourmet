@@ -1,12 +1,13 @@
 package br.com.ourogourmet.ouro.gourmet.usuario.repositories;
 
 import br.com.ourogourmet.ouro.gourmet.usuario.entities.Usuario;
+import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioEmailJaExistenteException;
+import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioLoginNaoEncontradoException;
 import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioNaoExisteException;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class UsuarioRepositoryImp implements UsuarioRepository {
@@ -84,12 +85,25 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     }
 
     @Override
-    public Optional<Usuario> findByLogin(String login) {
+    public Usuario findByLogin(String login) {
         return this.jdbcClient
                 .sql("SELECT * FROM usuario WHERE login = :login")
                 .param("login", login)
                 .query(Usuario.class)
-                .optional();
+                .optional()
+                .orElseThrow(() -> new UsuarioLoginNaoEncontradoException(login));
     }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        Boolean exists = this.jdbcClient
+                .sql("SELECT EXISTS (SELECT 1 FROM usuario WHERE email = :email)")
+                .param("email", email)
+                .query(Boolean.class)
+                .single();
+
+        return exists != null && exists;
+    }
+
 
 }

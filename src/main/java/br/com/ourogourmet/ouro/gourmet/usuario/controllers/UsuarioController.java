@@ -55,8 +55,8 @@ public class UsuarioController {
 
     @GetMapping
     public ResponseEntity<List<Usuario>> findAllUsuarios(
-            @RequestParam("page") int page,
-            @RequestParam("size") int size){
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size){
 
         logger.info("Foi acessado o endpoint usuarios /usuarios");
         var usuarios = this.getAllUsuarios.findAll(page, size);

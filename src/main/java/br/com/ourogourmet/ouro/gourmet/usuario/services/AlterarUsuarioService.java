@@ -16,20 +16,32 @@ public class AlterarUsuarioService implements AlterarUsuarioUseCase {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public void update(AlterarUsuarioDTO usuario, String id) {
-        var alterarUsuario = new Usuario(usuario);
-        var update = this.usuarioRepository.update(alterarUsuario, id);
+    public void update(AlterarUsuarioDTO usuarioDto, String id) {
+        var usuarioExistente = usuarioRepository.findById(id);
+
+        validarAlteracoes(usuarioExistente, usuarioDto);
+
+        var usuarioAlterado = new Usuario(usuarioDto);
+        var update = this.usuarioRepository.update(usuarioAlterado, id);
 
         if (update == 0) {
             throw new UsuarioNaoExisteException(id);
         }
+    }
 
-        if (!validarAlteracoes(alterarUsuario)) {
-            throw new UsuarioAlteracaoInvalidaException("Alteração inválida para o usuário com ID: " + id);
+    private void validarAlteracoes(Usuario usuarioAtual, AlterarUsuarioDTO novoUsuario) {
+        if (!usuarioAtual.getLogin().equals(novoUsuario.login())) {
+            throw new UsuarioAlteracaoInvalidaException("Não é permitido alterar o login.");
+        }
+
+        var emailJaExiste = usuarioRepository.existsByEmail(novoUsuario.email());
+        if (emailJaExiste) {
+            throw new UsuarioAlteracaoInvalidaException("O e-mail informado já está em uso.");
+        }
+
+        if (!novoUsuario.ativo()) {
+            throw new UsuarioAlteracaoInvalidaException("O campo 'ativo' não pode ser falso.");
         }
     }
 
-    private boolean validarAlteracoes(Usuario usuario) {
-        return true;
-    }
 }
