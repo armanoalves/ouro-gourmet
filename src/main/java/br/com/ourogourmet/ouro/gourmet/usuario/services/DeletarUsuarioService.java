@@ -1,7 +1,7 @@
 package br.com.ourogourmet.ouro.gourmet.usuario.services;
 
 import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioNaoDeletadoException;
-import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioNaoExisteException;
+import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioNaoEncontradoException;
 import br.com.ourogourmet.ouro.gourmet.usuario.repositories.UsuarioRepository;
 import br.com.ourogourmet.ouro.gourmet.usuario.usecase.DeletarUsuarioUseCase;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class DeletarUsuarioService implements DeletarUsuarioUseCase {
         var delete = this.usuarioRepository.delete(id);
 
         if (delete == 0) {
-            throw new UsuarioNaoExisteException(id);
+            throw new UsuarioNaoEncontradoException();
         }
 
         if (delete < 0) {

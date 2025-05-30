@@ -1,8 +1,9 @@
 package br.com.ourogourmet.ouro.gourmet.usuario.services;
 
 import br.com.ourogourmet.ouro.gourmet.usuario.entities.Usuario;
-import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioAlteracaoInvalidaException;
-import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioNaoExisteException;
+import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioValidacaoException;
+import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioDuplicadoException;
+import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioNaoEncontradoException;
 import br.com.ourogourmet.ouro.gourmet.usuario.repositories.UsuarioRepository;
 import br.com.ourogourmet.ouro.gourmet.usuario.usecase.AlterarUsuarioUseCase;
 import org.springframework.stereotype.Service;
@@ -21,26 +22,26 @@ public class AlterarUsuarioService implements AlterarUsuarioUseCase {
 
         validarAlteracoes(usuarioExistente, usuarioDto);
 
-        var usuarioAlterado = new Usuario(usuarioDto);
+        Usuario usuarioAlterado = new Usuario(usuarioDto);
         var update = this.usuarioRepository.update(usuarioAlterado, id);
 
         if (update == 0) {
-            throw new UsuarioNaoExisteException(id);
+            throw new UsuarioNaoEncontradoException();
         }
     }
 
     private void validarAlteracoes(Usuario usuarioAtual, AlterarUsuarioDTO novoUsuario) {
         if (!usuarioAtual.getLogin().equals(novoUsuario.login())) {
-            throw new UsuarioAlteracaoInvalidaException("Não é permitido alterar o login.");
+            throw new UsuarioDuplicadoException("do login");
         }
 
-        var emailJaExiste = usuarioRepository.existsByEmail(novoUsuario.email());
+        boolean emailJaExiste = usuarioRepository.existsByEmail(novoUsuario.email());
         if (emailJaExiste) {
-            throw new UsuarioAlteracaoInvalidaException("O e-mail informado já está em uso.");
+            throw new UsuarioDuplicadoException("do e-mail");
         }
 
         if (!novoUsuario.ativo()) {
-            throw new UsuarioAlteracaoInvalidaException("O campo 'ativo' não pode ser falso.");
+            throw new UsuarioValidacaoException("O campo 'ativo' não pode ser falso.");
         }
     }
 

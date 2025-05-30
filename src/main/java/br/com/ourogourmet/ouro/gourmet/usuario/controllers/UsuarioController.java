@@ -1,15 +1,12 @@
 package br.com.ourogourmet.ouro.gourmet.usuario.controllers;
 
 import br.com.ourogourmet.ouro.gourmet.usuario.entities.Usuario;
-import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioCamposInconsistentesException;
+import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioCamposInvalidosException;
 import br.com.ourogourmet.ouro.gourmet.usuario.usecase.*;
 import br.com.ourogourmet.ouro.gourmet.usuario.usecase.AlterarUsuarioUseCase.AlterarUsuarioDTO;
 import br.com.ourogourmet.ouro.gourmet.usuario.usecase.CriarUsuarioUseCase.CriarUsuarioDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -19,7 +16,6 @@ import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -82,7 +78,7 @@ public class UsuarioController {
                         .stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toSet());
 
         if (!erros.isEmpty())
-            throw new UsuarioCamposInconsistentesException(erros);
+            throw new UsuarioCamposInvalidosException(erros);
 
         logger.info("POST -> /usuarios");
         this.criarUsuario.save(usuario);
@@ -90,7 +86,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/validar")
-    public ResponseEntity<Void> validar(
+    public ResponseEntity<String> validar(
             @RequestBody ValidarLoginUsuarioUseCase.ValidarLoginUsuarioDTO dto) {
         var erros = this.validator.validateObject(dto)
                 .getAllErrors()
@@ -98,11 +94,11 @@ public class UsuarioController {
                 .collect(Collectors.toSet());
 
         if (!erros.isEmpty())
-            throw new UsuarioCamposInconsistentesException(erros);
+            throw new UsuarioCamposInvalidosException(erros);
 
         this.validarLoginUsuario.validar(dto);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body("Usuário validado!");
     }
 
     @PutMapping("/{id}")
@@ -117,7 +113,7 @@ public class UsuarioController {
                 .stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toSet());
 
         if (!erros.isEmpty())
-            throw new UsuarioCamposInconsistentesException(erros);
+            throw new UsuarioCamposInvalidosException(erros);
 
         this.alterarUsuario.update(usuario,id);
 
@@ -137,7 +133,7 @@ public class UsuarioController {
                 .collect(Collectors.toSet());
 
         if (!erros.isEmpty())
-            throw new UsuarioCamposInconsistentesException(erros);
+            throw new UsuarioCamposInvalidosException(erros);
 
         this.trocarSenhaUsuario.trocarSenha(dto, id);
 

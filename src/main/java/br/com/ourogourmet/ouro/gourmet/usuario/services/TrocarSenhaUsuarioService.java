@@ -1,12 +1,9 @@
 package br.com.ourogourmet.ouro.gourmet.usuario.services;
 
-import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioCamposInconsistentesException;
-import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioNaoExisteException;
+import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioNaoEncontradoException;
 import br.com.ourogourmet.ouro.gourmet.usuario.repositories.UsuarioRepository;
 import br.com.ourogourmet.ouro.gourmet.usuario.usecase.TrocarSenhaUsuarioUseCase;
 import org.springframework.stereotype.Service;
-
-import java.util.HashSet;
 
 @Service
 public class TrocarSenhaUsuarioService implements TrocarSenhaUsuarioUseCase {
@@ -22,7 +19,7 @@ public class TrocarSenhaUsuarioService implements TrocarSenhaUsuarioUseCase {
 
         var update = usuarioRepository.atualizarSenha(usuario, id);
         if (update == 0) {
-            throw new UsuarioNaoExisteException(id);
+            throw new UsuarioNaoEncontradoException();
         }
     }
 }

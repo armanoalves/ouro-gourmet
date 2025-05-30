@@ -5,8 +5,6 @@ import br.com.ourogourmet.ouro.gourmet.usuario.repositories.UsuarioRepository;
 import br.com.ourogourmet.ouro.gourmet.usuario.usecase.GetByIdUsuarioUseCase;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class GetByIdUsuarioService implements GetByIdUsuarioUseCase {
     private final UsuarioRepository usuarioRepository;

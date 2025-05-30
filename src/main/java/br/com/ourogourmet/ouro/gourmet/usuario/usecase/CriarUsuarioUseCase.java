@@ -1,5 +1,6 @@
 package br.com.ourogourmet.ouro.gourmet.usuario.usecase;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -23,6 +24,7 @@ public interface CriarUsuarioUseCase {
                 String email,
 
                 @NotBlank(message = "O campo login é obrigatório.")
+                @Column(unique = true)
                 String login,
 
                 @NotNull

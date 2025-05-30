@@ -1,7 +1,7 @@
 package br.com.ourogourmet.ouro.gourmet.usuario.services;
 
 import br.com.ourogourmet.ouro.gourmet.usuario.entities.Usuario;
-import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioEmailJaExistenteException;
+import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioDuplicadoException;
 import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioCriacaoFalhaException;
 import br.com.ourogourmet.ouro.gourmet.usuario.repositories.UsuarioRepository;
 import br.com.ourogourmet.ouro.gourmet.usuario.usecase.CriarUsuarioUseCase;
@@ -23,14 +23,14 @@ public class CriarUsuarioService implements CriarUsuarioUseCase {
                 .anyMatch(u -> u.getEmail().equalsIgnoreCase(usuario.email()));
 
         if (emailJaExiste) {
-            throw new UsuarioEmailJaExistenteException(usuario.email());
+            throw new UsuarioDuplicadoException("do e-mail");
         }
 
         var incluirUsuario = new Usuario(usuario);
         var save = this.usuarioRepository.save(incluirUsuario);
 
         if (save != 1) {
-            throw new UsuarioCriacaoFalhaException("Erro ao salvar usuário com e-mail: " + usuario.email());
+            throw new UsuarioCriacaoFalhaException("Erro ao salvar usuário");
         }
     }
 }

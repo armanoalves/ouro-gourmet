@@ -1,9 +1,7 @@
 package br.com.ourogourmet.ouro.gourmet.usuario.repositories;
 
 import br.com.ourogourmet.ouro.gourmet.usuario.entities.Usuario;
-import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioEmailJaExistenteException;
-import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioLoginNaoEncontradoException;
-import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioNaoExisteException;
+import br.com.ourogourmet.ouro.gourmet.usuario.exceptions.UsuarioNaoEncontradoException;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
@@ -25,7 +23,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
                 .param("id",id)
                 .query(Usuario.class)
                 .optional()
-                .orElseThrow(() -> new UsuarioNaoExisteException(id));
+                .orElseThrow(UsuarioNaoEncontradoException::new);
     }
 
     @Override
@@ -91,18 +89,16 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
                 .param("login", login)
                 .query(Usuario.class)
                 .optional()
-                .orElseThrow(() -> new UsuarioLoginNaoEncontradoException(login));
+                .orElseThrow(UsuarioNaoEncontradoException::new);
     }
 
     @Override
     public boolean existsByEmail(String email) {
-        Boolean exists = this.jdbcClient
+        return this.jdbcClient
                 .sql("SELECT EXISTS (SELECT 1 FROM usuario WHERE email = :email)")
                 .param("email", email)
                 .query(Boolean.class)
                 .single();
-
-        return exists != null && exists;
     }
 
 
