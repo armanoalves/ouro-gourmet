@@ -122,7 +122,7 @@ public class UsuarioController {
         return ResponseEntity.status(status.value()).build();
     }
 
-    @PutMapping("/{id}/senha")
+    @PatchMapping("/{id}/senha")
     public ResponseEntity<Void> alterarSenha(
             @PathVariable("id") String id,
             @RequestBody TrocarSenhaUsuarioUseCase.TrocarSenhaUsuarioDTO dto) {
