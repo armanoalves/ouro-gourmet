@@ -5,7 +5,9 @@
 [Funcionalidades](#funcionalidades)  
 [Como Rodar a Aplicação](#como-rodar-a-aplicação)  
 [Documentação da API (Swagger)](#documentação-da-api-swagger)  
-[Docker Compose](#docker-compose)
+[Docker Compose](#docker-compose)   
+[Diagramas](#diagramas)  
+
 
 # Introdução
 
@@ -87,4 +89,12 @@ O projeto utiliza Docker Compose com os seguintes serviços:
 O `Dockerfile` está configurado com:
 
 - **Java 17**  
-- **Maven**  
+- **Maven**     
+
+# Diagramas
+
+## Diagrama UML
+![model.png]()
+
+## Diagrama de Arquitetura
+![arquitetura.png]()
