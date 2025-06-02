@@ -66,11 +66,11 @@ Este comando iniciará os seguintes containers:
 
 Após subir os containers com Docker Compose, acesse o Swagger pela URL:
 
-[http://localhost:8083/swagger-ui/index.html#/](http://localhost:8083/swagger-ui/index.html#/)
+[http://localhost:8081/swagger-ui/index.html#/](http://localhost:8083/swagger-ui/index.html#/)
 
-Se estiver rodando a aplicação localmente pela IDE, utilize a porta 8081:
+Se estiver rodando a aplicação localmente pela IDE, utilize a porta 8083:
 
-[http://localhost:8081/swagger-ui/index.html#/](http://localhost:8081/swagger-ui/index.html#/)
+[http://localhost:8083/swagger-ui/index.html#/](http://localhost:8081/swagger-ui/index.html#/)
 
 # Documentação da API (Swagger)
 
