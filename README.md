@@ -94,7 +94,7 @@ O `Dockerfile` está configurado com:
 # Diagramas
 
 ## Diagrama UML
-![model.png]()
+![model.png](documentacao/diagrama-classes/model.jpg)
 
 ## Diagrama de Arquitetura
-![arquitetura.png]()
+![arquitetura.png](documentacao/diagrama-classes/arquitetura.png)
