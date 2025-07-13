@@ -10,8 +10,6 @@ import br.com.ourogourmet.core.exceptions.UsuarioCamposInvalidosException;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +25,6 @@ import java.util.stream.Collectors;
 @Tag(name="Usuários", description = "Cadastro de usuarios")
 @AllArgsConstructor
 public class UsuarioController {
-
-    private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 
     private final CriarUsuarioUseCase criarUsuario;
     private final AlterarUsuarioUseCase alterarUsuario;

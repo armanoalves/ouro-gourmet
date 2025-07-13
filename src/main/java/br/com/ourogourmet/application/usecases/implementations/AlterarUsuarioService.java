@@ -23,7 +23,7 @@ public class AlterarUsuarioService implements AlterarUsuarioUseCase {
 
         validarAlteracoes(usuarioExistente, usuarioDto);
 
-        Usuario usuarioAlterado = new Usuario(usuarioDto);
+        Usuario usuarioAlterado = Usuario.alterar(usuarioDto);
         var update = this.usuarioRepository.update(usuarioAlterado, id);
 
         if (update == 0) {

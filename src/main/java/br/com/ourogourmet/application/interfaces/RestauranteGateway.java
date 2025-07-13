@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface RestauranteGateway {
 
-    void incluir(Restaurante restaurante);
-    Restaurante findById(String id);
+    Long incluir(Restaurante restaurante);
+    Restaurante findById(Long id);
     Optional<Restaurante> findByNome(String nome);
 }
