@@ -1,6 +1,0 @@
-Long id
-String Nome
-Endereço
-Tipo de cozinha.
-Horário de funcionamento.
-Dono do restaurante (é preciso atribuir um usuário como responsável por esse restaurante).
