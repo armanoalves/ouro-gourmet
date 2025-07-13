@@ -1,6 +1,6 @@
 package br.com.ourogourmet.infrastructure.controller;
 
-import br.com.ourogourmet.application.interfaces.*;
+import br.com.ourogourmet.application.usecases.*;
 import br.com.ourogourmet.core.dto.AlterarUsuarioDTO;
 import br.com.ourogourmet.core.dto.CriarUsuarioDTO;
 import br.com.ourogourmet.core.dto.TrocarSenhaUsuarioDTO;

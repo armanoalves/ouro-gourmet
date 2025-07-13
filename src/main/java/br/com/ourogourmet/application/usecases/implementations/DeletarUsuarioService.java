@@ -1,17 +1,17 @@
-package br.com.ourogourmet.application.usecases;
+package br.com.ourogourmet.application.usecases.implementations;
 
+import br.com.ourogourmet.application.usecases.DeletarUsuarioUseCase;
 import br.com.ourogourmet.core.exceptions.UsuarioNaoDeletadoException;
 import br.com.ourogourmet.core.exceptions.UsuarioNaoEncontradoException;
-import br.com.ourogourmet.application.interfaces.DeletarUsuarioUseCase;
-import br.com.ourogourmet.application.interfaces.UsuarioRepository;
+import br.com.ourogourmet.application.interfaces.UsuarioGateway;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DeletarUsuarioService implements DeletarUsuarioUseCase {
 
-    private final UsuarioRepository usuarioRepository;
+    private final UsuarioGateway usuarioRepository;
 
-    public DeletarUsuarioService(UsuarioRepository usuarioRepository) {
+    public DeletarUsuarioService(UsuarioGateway usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
 

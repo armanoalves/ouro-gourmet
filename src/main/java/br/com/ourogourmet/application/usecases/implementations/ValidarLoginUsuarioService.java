@@ -1,16 +1,16 @@
-package br.com.ourogourmet.application.usecases;
+package br.com.ourogourmet.application.usecases.implementations;
 
+import br.com.ourogourmet.application.usecases.ValidarLoginUsuarioUseCase;
 import br.com.ourogourmet.core.dto.ValidarLoginUsuarioDTO;
 import br.com.ourogourmet.core.exceptions.UsuarioSenhaInvalidaException;
-import br.com.ourogourmet.application.interfaces.UsuarioRepository;
-import br.com.ourogourmet.application.interfaces.ValidarLoginUsuarioUseCase;
+import br.com.ourogourmet.application.interfaces.UsuarioGateway;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ValidarLoginUsuarioService implements ValidarLoginUsuarioUseCase {
-    private final UsuarioRepository usuarioRepository;
+    private final UsuarioGateway usuarioRepository;
 
-    public ValidarLoginUsuarioService(UsuarioRepository usuarioRepository) { this.usuarioRepository = usuarioRepository; }
+    public ValidarLoginUsuarioService(UsuarioGateway usuarioRepository) { this.usuarioRepository = usuarioRepository; }
 
     @Override
     public void validar(ValidarLoginUsuarioDTO validarLoginUsuarioDTO) {

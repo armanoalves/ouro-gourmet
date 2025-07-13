@@ -1,15 +1,15 @@
-package br.com.ourogourmet.application.usecases;
+package br.com.ourogourmet.application.usecases.implementations;
 
+import br.com.ourogourmet.application.usecases.GetByIdUsuarioUseCase;
 import br.com.ourogourmet.core.entities.Usuario;
-import br.com.ourogourmet.application.interfaces.GetByIdUsuarioUseCase;
-import br.com.ourogourmet.application.interfaces.UsuarioRepository;
+import br.com.ourogourmet.application.interfaces.UsuarioGateway;
 import org.springframework.stereotype.Service;
 
 @Service
 public class GetByIdUsuarioService implements GetByIdUsuarioUseCase {
-    private final UsuarioRepository usuarioRepository;
+    private final UsuarioGateway usuarioRepository;
 
-    public GetByIdUsuarioService(UsuarioRepository usuarioRepository){
+    public GetByIdUsuarioService(UsuarioGateway usuarioRepository){
         this.usuarioRepository = usuarioRepository;
     }
 

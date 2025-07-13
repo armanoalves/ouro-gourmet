@@ -1,4 +1,4 @@
-package br.com.ourogourmet.application.interfaces;
+package br.com.ourogourmet.application.usecases;
 
 import br.com.ourogourmet.core.entities.Usuario;
 

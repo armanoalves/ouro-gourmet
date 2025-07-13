@@ -1,20 +1,20 @@
-package br.com.ourogourmet.application.usecases;
+package br.com.ourogourmet.application.usecases.implementations;
 
+import br.com.ourogourmet.application.usecases.AlterarUsuarioUseCase;
 import br.com.ourogourmet.core.dto.AlterarUsuarioDTO;
 import br.com.ourogourmet.core.entities.Usuario;
 import br.com.ourogourmet.core.exceptions.UsuarioValidacaoException;
 import br.com.ourogourmet.core.exceptions.UsuarioDuplicadoException;
 import br.com.ourogourmet.core.exceptions.UsuarioNaoEncontradoException;
-import br.com.ourogourmet.application.interfaces.AlterarUsuarioUseCase;
-import br.com.ourogourmet.application.interfaces.UsuarioRepository;
+import br.com.ourogourmet.application.interfaces.UsuarioGateway;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AlterarUsuarioService implements AlterarUsuarioUseCase {
 
-    private final UsuarioRepository usuarioRepository;
+    private final UsuarioGateway usuarioRepository;
 
-    public AlterarUsuarioService(UsuarioRepository usuarioRepository) {
+    public AlterarUsuarioService(UsuarioGateway usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
 

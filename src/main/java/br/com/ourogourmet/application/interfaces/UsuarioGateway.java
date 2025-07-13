@@ -4,7 +4,7 @@ import br.com.ourogourmet.core.entities.Usuario;
 
 import java.util.List;
 
-public interface UsuarioRepository {
+public interface UsuarioGateway {
 
     Usuario findById(String id);
     List<Usuario> findAll(int size, int offset);

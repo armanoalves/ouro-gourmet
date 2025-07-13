@@ -1,16 +1,16 @@
-package br.com.ourogourmet.application.usecases;
+package br.com.ourogourmet.application.usecases.implementations;
 
+import br.com.ourogourmet.application.usecases.TrocarSenhaUsuarioUseCase;
 import br.com.ourogourmet.core.dto.TrocarSenhaUsuarioDTO;
 import br.com.ourogourmet.core.exceptions.UsuarioNaoEncontradoException;
-import br.com.ourogourmet.application.interfaces.TrocarSenhaUsuarioUseCase;
-import br.com.ourogourmet.application.interfaces.UsuarioRepository;
+import br.com.ourogourmet.application.interfaces.UsuarioGateway;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TrocarSenhaUsuarioService implements TrocarSenhaUsuarioUseCase {
-    private final UsuarioRepository usuarioRepository;
+    private final UsuarioGateway usuarioRepository;
 
-    public TrocarSenhaUsuarioService(UsuarioRepository usuarioRepository) { this.usuarioRepository = usuarioRepository; }
+    public TrocarSenhaUsuarioService(UsuarioGateway usuarioRepository) { this.usuarioRepository = usuarioRepository; }
 
     @Override
     public void trocarSenha(TrocarSenhaUsuarioDTO trocarSenhaUsuarioDTO, String id) {

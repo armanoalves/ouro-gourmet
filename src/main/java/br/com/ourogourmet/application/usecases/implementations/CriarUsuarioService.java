@@ -1,19 +1,19 @@
-package br.com.ourogourmet.application.usecases;
+package br.com.ourogourmet.application.usecases.implementations;
 
+import br.com.ourogourmet.application.usecases.CriarUsuarioUseCase;
 import br.com.ourogourmet.core.dto.CriarUsuarioDTO;
 import br.com.ourogourmet.core.entities.Usuario;
 import br.com.ourogourmet.core.exceptions.UsuarioCriacaoFalhaException;
 import br.com.ourogourmet.core.exceptions.UsuarioDuplicadoException;
-import br.com.ourogourmet.application.interfaces.CriarUsuarioUseCase;
-import br.com.ourogourmet.application.interfaces.UsuarioRepository;
+import br.com.ourogourmet.application.interfaces.UsuarioGateway;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CriarUsuarioService implements CriarUsuarioUseCase {
 
-    private final UsuarioRepository usuarioRepository;
+    private final UsuarioGateway usuarioRepository;
 
-    public CriarUsuarioService(UsuarioRepository usuarioRepository) {
+    public CriarUsuarioService(UsuarioGateway usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
 
