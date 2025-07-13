@@ -1,8 +1,8 @@
 package br.com.ourogourmet.core.entities;
 
 
-import br.com.ourogourmet.infrastructure.web.controller.dtos.AlterarUsuarioDTO;
-import br.com.ourogourmet.infrastructure.web.controller.dtos.CriarUsuarioDTO;
+import br.com.ourogourmet.application.usecases.AlterarUsuarioUseCase.AlterarUsuarioCommand;
+import br.com.ourogourmet.application.usecases.CriarUsuarioUseCase.CriarUsuarioCommand;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -39,7 +39,7 @@ public class Usuario {
         return usuario;
     }
 
-    public static Usuario alterar(AlterarUsuarioDTO alterarUsuarioDTO){
+    public static Usuario alterar(AlterarUsuarioCommand alterarUsuarioDTO){
 
         return create(alterarUsuarioDTO.nome(),
                 alterarUsuarioDTO.email(),
@@ -50,7 +50,7 @@ public class Usuario {
                 alterarUsuarioDTO.endereco());
     }
 
-    public static Usuario incluir(CriarUsuarioDTO criarUsuario){
+    public static Usuario incluir(CriarUsuarioCommand criarUsuario){
 
         var usuario = create(criarUsuario.nome(),
                 criarUsuario.email(),
