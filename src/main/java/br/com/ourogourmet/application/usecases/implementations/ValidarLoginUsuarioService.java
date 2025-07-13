@@ -1,7 +1,7 @@
 package br.com.ourogourmet.application.usecases.implementations;
 
 import br.com.ourogourmet.application.usecases.ValidarLoginUsuarioUseCase;
-import br.com.ourogourmet.core.dto.ValidarLoginUsuarioDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.ValidarLoginUsuarioDTO;
 import br.com.ourogourmet.core.exceptions.UsuarioSenhaInvalidaException;
 import br.com.ourogourmet.application.interfaces.UsuarioGateway;
 import org.springframework.stereotype.Service;

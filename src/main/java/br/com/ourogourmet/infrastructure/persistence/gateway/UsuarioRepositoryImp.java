@@ -1,4 +1,4 @@
-package br.com.ourogourmet.infrastructure.gateway;
+package br.com.ourogourmet.infrastructure.persistence.gateway;
 
 import br.com.ourogourmet.core.entities.Usuario;
 import br.com.ourogourmet.core.exceptions.UsuarioNaoEncontradoException;

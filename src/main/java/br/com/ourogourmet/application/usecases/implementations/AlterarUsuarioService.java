@@ -1,7 +1,7 @@
 package br.com.ourogourmet.application.usecases.implementations;
 
 import br.com.ourogourmet.application.usecases.AlterarUsuarioUseCase;
-import br.com.ourogourmet.core.dto.AlterarUsuarioDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.AlterarUsuarioDTO;
 import br.com.ourogourmet.core.entities.Usuario;
 import br.com.ourogourmet.core.exceptions.UsuarioValidacaoException;
 import br.com.ourogourmet.core.exceptions.UsuarioDuplicadoException;

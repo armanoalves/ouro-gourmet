@@ -1,10 +1,10 @@
-package br.com.ourogourmet.infrastructure.controller;
+package br.com.ourogourmet.infrastructure.web.controller;
 
 import br.com.ourogourmet.application.usecases.*;
-import br.com.ourogourmet.core.dto.AlterarUsuarioDTO;
-import br.com.ourogourmet.core.dto.CriarUsuarioDTO;
-import br.com.ourogourmet.core.dto.TrocarSenhaUsuarioDTO;
-import br.com.ourogourmet.core.dto.ValidarLoginUsuarioDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.AlterarUsuarioDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.CriarUsuarioDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.TrocarSenhaUsuarioDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.ValidarLoginUsuarioDTO;
 import br.com.ourogourmet.core.entities.Usuario;
 import br.com.ourogourmet.core.exceptions.UsuarioCamposInvalidosException;
 import io.swagger.v3.oas.annotations.tags.Tag;

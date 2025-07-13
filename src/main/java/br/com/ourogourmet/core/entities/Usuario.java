@@ -1,8 +1,8 @@
 package br.com.ourogourmet.core.entities;
 
 
-import br.com.ourogourmet.core.dto.AlterarUsuarioDTO;
-import br.com.ourogourmet.core.dto.CriarUsuarioDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.AlterarUsuarioDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.CriarUsuarioDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

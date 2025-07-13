@@ -1,8 +1,8 @@
-package br.com.ourogourmet.infrastructure.controller;
+package br.com.ourogourmet.infrastructure.web.controller;
 
 import br.com.ourogourmet.application.usecases.CriarRestauranteUseCase;
 import br.com.ourogourmet.application.usecases.CriarRestauranteUseCase.CriarRestauranteCommand;
-import br.com.ourogourmet.core.dto.CriarRestauranteDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.CriarRestauranteDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

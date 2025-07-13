@@ -1,4 +1,4 @@
-package br.com.ourogourmet.infrastructure.exception;
+package br.com.ourogourmet.infrastructure.web.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

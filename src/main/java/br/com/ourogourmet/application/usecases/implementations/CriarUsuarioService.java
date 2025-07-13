@@ -1,7 +1,7 @@
 package br.com.ourogourmet.application.usecases.implementations;
 
 import br.com.ourogourmet.application.usecases.CriarUsuarioUseCase;
-import br.com.ourogourmet.core.dto.CriarUsuarioDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.CriarUsuarioDTO;
 import br.com.ourogourmet.core.entities.Usuario;
 import br.com.ourogourmet.core.exceptions.UsuarioCriacaoFalhaException;
 import br.com.ourogourmet.core.exceptions.UsuarioDuplicadoException;

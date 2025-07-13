@@ -1,6 +1,6 @@
 package br.com.ourogourmet.application.usecases;
 
-import br.com.ourogourmet.core.dto.ValidarLoginUsuarioDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.ValidarLoginUsuarioDTO;
 
 public interface ValidarLoginUsuarioUseCase {
 

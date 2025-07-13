@@ -1,4 +1,4 @@
-package br.com.ourogourmet.core.dto;
+package br.com.ourogourmet.infrastructure.web.controller.dtos;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;

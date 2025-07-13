@@ -1,7 +1,7 @@
 package br.com.ourogourmet.application.usecases.implementations;
 
 import br.com.ourogourmet.application.usecases.TrocarSenhaUsuarioUseCase;
-import br.com.ourogourmet.core.dto.TrocarSenhaUsuarioDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.TrocarSenhaUsuarioDTO;
 import br.com.ourogourmet.core.exceptions.UsuarioNaoEncontradoException;
 import br.com.ourogourmet.application.interfaces.UsuarioGateway;
 import org.springframework.stereotype.Service;
