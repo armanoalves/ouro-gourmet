@@ -4,7 +4,7 @@ import java.time.LocalTime;
 
 public class Restaurante {
 
-    private String id;
+    private Long id;
     private String nome;
     private String tipoCozinha;
     private LocalTime horarioFuncionamentoDe;
@@ -25,7 +25,7 @@ public class Restaurante {
         return restaurante;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -53,4 +53,23 @@ public class Restaurante {
         return this.nome;
     }
 
+    public String getTipoCozinha() {
+        return tipoCozinha;
+    }
+
+    public LocalTime getHorarioFuncionamentoDe() {
+        return horarioFuncionamentoDe;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public LocalTime getHorarioFuncionamentoAte() {
+        return horarioFuncionamentoAte;
+    }
 }

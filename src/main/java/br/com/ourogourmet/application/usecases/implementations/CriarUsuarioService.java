@@ -27,7 +27,7 @@ public class CriarUsuarioService implements CriarUsuarioUseCase {
             throw new UsuarioDuplicadoException("do e-mail");
         }
 
-        var incluirUsuario = new Usuario(usuario);
+        var incluirUsuario = Usuario.incluir(usuario);
         var save = this.usuarioRepository.save(incluirUsuario);
 
         if (save != 1) {

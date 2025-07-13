@@ -2,32 +2,22 @@ package br.com.ourogourmet.infrastructure.gateway;
 
 import br.com.ourogourmet.application.interfaces.RestauranteGateway;
 import br.com.ourogourmet.core.entities.Restaurante;
-import org.springframework.jdbc.core.simple.JdbcClient;
+import br.com.ourogourmet.infrastructure.persistence.RestauranteEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public class RestauranteGatewayImpl implements RestauranteGateway {
-
-    private final JdbcClient jdbcClient;
-
-    public RestauranteGatewayImpl(JdbcClient jdbcClient) {
-        this.jdbcClient = jdbcClient;
-    }
+public interface RestauranteGatewayImpl extends JpaRepository<RestauranteEntity, UUID>,RestauranteGateway
+{
 
     @Override
-    public void incluir(Restaurante restaurante) {
-
+    default Long incluir(Restaurante restaurante) {
+        var entity = new RestauranteEntity(restaurante);
+        return this.save(entity).getId();
     }
 
-    @Override
-    public Restaurante findById(String id) {
-        return null;
-    }
 
-    @Override
-    public Optional<Restaurante> findByNome(String nome) {
-        return Optional.empty();
-    }
+
 }

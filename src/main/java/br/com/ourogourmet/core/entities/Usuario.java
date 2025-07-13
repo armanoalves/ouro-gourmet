@@ -5,14 +5,12 @@ import br.com.ourogourmet.core.dto.AlterarUsuarioDTO;
 import br.com.ourogourmet.core.dto.CriarUsuarioDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class Usuario {
 
     private String id;
@@ -24,28 +22,82 @@ public class Usuario {
     private LocalDate dataAlteracao;
     private String endereco;
 
-    public Usuario(AlterarUsuarioDTO alterarUsuarioDTO){
-        this.email = alterarUsuarioDTO.email();
-        this.login = alterarUsuarioDTO.login();
-        this.ativo = alterarUsuarioDTO.ativo();
-        this.dataAlteracao = LocalDate.now();
-        this.nome = alterarUsuarioDTO.nome();
-        this.endereco = alterarUsuarioDTO.endereco();
+    protected Usuario(){}
+
+    public static Usuario create(String nome,String email, String login, Boolean ativo, String senha, LocalDate dataAlteracao, String endereco){
+
+        var usuario = new Usuario();
+
+        usuario.setNome(nome);
+        usuario.setEmail(email);
+        usuario.setLogin(login);
+        usuario.setAtivo(ativo);
+        usuario.setSenha(senha);
+        usuario.setDataAlteracao(dataAlteracao);
+        usuario.setEndereco(endereco);
+
+        return usuario;
     }
 
-    public Usuario(CriarUsuarioDTO criarUsuario){
-        this.id = String.valueOf(UUID.randomUUID());
-        this.email = criarUsuario.email();
-        this.senha = criarUsuario.senha();
-        this.login = criarUsuario.login();
-        this.ativo = criarUsuario.ativo();
-        this.dataAlteracao = LocalDate.now();
-        this.nome = criarUsuario.nome();
-        this.endereco = criarUsuario.endereco();
+    public static Usuario alterar(AlterarUsuarioDTO alterarUsuarioDTO){
+
+        return create(alterarUsuarioDTO.nome(),
+                alterarUsuarioDTO.email(),
+                alterarUsuarioDTO.login(),
+                alterarUsuarioDTO.ativo(),
+                null,
+                LocalDate.now(),
+                alterarUsuarioDTO.endereco());
+    }
+
+    public static Usuario incluir(CriarUsuarioDTO criarUsuario){
+
+        var usuario = create(criarUsuario.nome(),
+                criarUsuario.email(),
+                criarUsuario.login(),
+                criarUsuario.ativo(),
+                criarUsuario.senha(),
+                LocalDate.now(),
+                criarUsuario.endereco());
+
+        usuario.setId(String.valueOf(UUID.randomUUID()));
+        return usuario;
     }
 
     public void alterarSenha(String novaSenha) {
-        this.senha = novaSenha;
+        this.setSenha(novaSenha);
     }
 
+
+    private void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setDataAlteracao(LocalDate dataAlteracao) {
+        this.dataAlteracao = dataAlteracao;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
 }
