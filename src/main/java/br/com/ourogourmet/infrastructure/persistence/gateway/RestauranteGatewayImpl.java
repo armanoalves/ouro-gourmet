@@ -1,4 +1,4 @@
-package br.com.ourogourmet.infrastructure.gateway;
+package br.com.ourogourmet.infrastructure.persistence.gateway;
 
 import br.com.ourogourmet.application.interfaces.RestauranteGateway;
 import br.com.ourogourmet.core.entities.Restaurante;

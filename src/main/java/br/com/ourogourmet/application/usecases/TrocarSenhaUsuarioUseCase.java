@@ -1,7 +1,13 @@
 package br.com.ourogourmet.application.usecases;
 
-import br.com.ourogourmet.core.dto.TrocarSenhaUsuarioDTO;
+import jakarta.validation.constraints.NotBlank;
 
 public interface TrocarSenhaUsuarioUseCase {
-    void trocarSenha(TrocarSenhaUsuarioDTO senha, String id);
+    void trocarSenha(TrocarSenhaUsuarioCommand senha, String id);
+
+    record TrocarSenhaUsuarioCommand(
+            @NotBlank(message = "O campo senha é obrigatório.")
+            String senha) {
+
+    }
 }

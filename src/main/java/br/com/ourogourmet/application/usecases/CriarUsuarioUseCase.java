@@ -1,7 +1,14 @@
 package br.com.ourogourmet.application.usecases;
 
-import br.com.ourogourmet.core.dto.CriarUsuarioDTO;
-
 public interface CriarUsuarioUseCase {
-        void save(CriarUsuarioDTO usuario);
+        void save(CriarUsuarioCommand usuario);
+
+        record CriarUsuarioCommand(
+                String nome,
+                String endereco,
+                String senha,
+                String email,
+                String login,
+                Boolean ativo) {
+        }
 }

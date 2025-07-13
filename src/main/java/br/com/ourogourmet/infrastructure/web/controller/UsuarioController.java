@@ -1,12 +1,16 @@
-package br.com.ourogourmet.infrastructure.controller;
+package br.com.ourogourmet.infrastructure.web.controller;
 
 import br.com.ourogourmet.application.usecases.*;
-import br.com.ourogourmet.core.dto.AlterarUsuarioDTO;
-import br.com.ourogourmet.core.dto.CriarUsuarioDTO;
-import br.com.ourogourmet.core.dto.TrocarSenhaUsuarioDTO;
-import br.com.ourogourmet.core.dto.ValidarLoginUsuarioDTO;
+import br.com.ourogourmet.application.usecases.AlterarUsuarioUseCase.AlterarUsuarioCommand;
+import br.com.ourogourmet.application.usecases.CriarUsuarioUseCase.CriarUsuarioCommand;
+import br.com.ourogourmet.application.usecases.TrocarSenhaUsuarioUseCase.TrocarSenhaUsuarioCommand;
+import br.com.ourogourmet.application.usecases.ValidarLoginUsuarioUseCase.ValidarLoginUsuarioCommand;
 import br.com.ourogourmet.core.entities.Usuario;
 import br.com.ourogourmet.core.exceptions.UsuarioCamposInvalidosException;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.AlterarUsuarioDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.CriarUsuarioDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.TrocarSenhaUsuarioDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.ValidarLoginUsuarioDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -65,7 +69,12 @@ public class UsuarioController {
         if (!erros.isEmpty())
             throw new UsuarioCamposInvalidosException(erros);
 
-        this.criarUsuario.save(usuario);
+        this.criarUsuario.save(new CriarUsuarioCommand(usuario.nome(),
+                usuario.endereco(),
+                usuario.senha(),
+                usuario.email(),
+                usuario.login(),
+                usuario.ativo()) );
         return ResponseEntity.status(200).build();
     }
 
@@ -80,7 +89,7 @@ public class UsuarioController {
         if (!erros.isEmpty())
             throw new UsuarioCamposInvalidosException(erros);
 
-        this.validarLoginUsuario.validar(dto);
+        this.validarLoginUsuario.validar(new ValidarLoginUsuarioCommand(dto.login(),dto.senha()));
 
         return ResponseEntity.ok().body("Usuário validado!");
     }
@@ -97,7 +106,12 @@ public class UsuarioController {
         if (!erros.isEmpty())
             throw new UsuarioCamposInvalidosException(erros);
 
-        this.alterarUsuario.update(usuario,id);
+        this.alterarUsuario.update( new AlterarUsuarioCommand(usuario.nome(),
+                        usuario.endereco(),
+                        usuario.email(),
+                        usuario.login(),
+                        usuario.ativo())
+                ,id);
 
         var status = HttpStatus.NO_CONTENT;
 
@@ -117,7 +131,7 @@ public class UsuarioController {
         if (!erros.isEmpty())
             throw new UsuarioCamposInvalidosException(erros);
 
-        this.trocarSenhaUsuario.trocarSenha(dto, id);
+        this.trocarSenhaUsuario.trocarSenha(new TrocarSenhaUsuarioCommand(dto.senha()), id);
 
         return ResponseEntity.noContent().build();
     }

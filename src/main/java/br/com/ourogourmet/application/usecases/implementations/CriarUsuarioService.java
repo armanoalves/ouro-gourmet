@@ -1,11 +1,10 @@
 package br.com.ourogourmet.application.usecases.implementations;
 
+import br.com.ourogourmet.application.interfaces.UsuarioGateway;
 import br.com.ourogourmet.application.usecases.CriarUsuarioUseCase;
-import br.com.ourogourmet.core.dto.CriarUsuarioDTO;
 import br.com.ourogourmet.core.entities.Usuario;
 import br.com.ourogourmet.core.exceptions.UsuarioCriacaoFalhaException;
 import br.com.ourogourmet.core.exceptions.UsuarioDuplicadoException;
-import br.com.ourogourmet.application.interfaces.UsuarioGateway;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,7 +16,7 @@ public class CriarUsuarioService implements CriarUsuarioUseCase {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public void save(CriarUsuarioDTO usuario) {
+    public void save(CriarUsuarioCommand usuario) {
         var usuariosExistentes = usuarioRepository.findAll(Integer.MAX_VALUE, 0);
 
         boolean emailJaExiste = usuariosExistentes.stream()

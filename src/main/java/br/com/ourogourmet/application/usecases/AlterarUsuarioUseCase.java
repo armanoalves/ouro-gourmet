@@ -1,10 +1,16 @@
 package br.com.ourogourmet.application.usecases;
 
 
-import br.com.ourogourmet.core.dto.AlterarUsuarioDTO;
-
 public interface AlterarUsuarioUseCase{
-    void update(AlterarUsuarioDTO usuario, String id);
+    void update(AlterarUsuarioCommand usuario, String id);
+
+    record AlterarUsuarioCommand(
+            String nome,
+            String endereco,
+            String email,
+            String login,
+            Boolean ativo) {
+    }
 }
 
 

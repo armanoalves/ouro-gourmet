@@ -1,4 +1,4 @@
-package br.com.ourogourmet.infrastructure.exception;
+package br.com.ourogourmet.infrastructure.web.exception;
 
 import br.com.ourogourmet.core.exceptions.*;
 import org.springframework.http.HttpStatus;

@@ -1,12 +1,11 @@
 package br.com.ourogourmet.application.usecases.implementations;
 
+import br.com.ourogourmet.application.interfaces.UsuarioGateway;
 import br.com.ourogourmet.application.usecases.AlterarUsuarioUseCase;
-import br.com.ourogourmet.core.dto.AlterarUsuarioDTO;
 import br.com.ourogourmet.core.entities.Usuario;
-import br.com.ourogourmet.core.exceptions.UsuarioValidacaoException;
 import br.com.ourogourmet.core.exceptions.UsuarioDuplicadoException;
 import br.com.ourogourmet.core.exceptions.UsuarioNaoEncontradoException;
-import br.com.ourogourmet.application.interfaces.UsuarioGateway;
+import br.com.ourogourmet.core.exceptions.UsuarioValidacaoException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +17,7 @@ public class AlterarUsuarioService implements AlterarUsuarioUseCase {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public void update(AlterarUsuarioDTO usuarioDto, String id) {
+    public void update(AlterarUsuarioCommand usuarioDto, String id) {
         var usuarioExistente = usuarioRepository.findById(id);
 
         validarAlteracoes(usuarioExistente, usuarioDto);
@@ -31,7 +30,7 @@ public class AlterarUsuarioService implements AlterarUsuarioUseCase {
         }
     }
 
-    private void validarAlteracoes(Usuario usuarioAtual, AlterarUsuarioDTO novoUsuario) {
+    private void validarAlteracoes(Usuario usuarioAtual, AlterarUsuarioCommand novoUsuario) {
         if (!usuarioAtual.getLogin().equals(novoUsuario.login())) {
             throw new UsuarioDuplicadoException("do login");
         }

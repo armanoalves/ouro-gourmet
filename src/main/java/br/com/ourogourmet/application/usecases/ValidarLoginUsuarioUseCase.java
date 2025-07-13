@@ -1,9 +1,12 @@
 package br.com.ourogourmet.application.usecases;
 
-import br.com.ourogourmet.core.dto.ValidarLoginUsuarioDTO;
-
 public interface ValidarLoginUsuarioUseCase {
 
-    void validar(ValidarLoginUsuarioDTO dto);
+    void validar(ValidarLoginUsuarioCommand cmd);
+
+    record ValidarLoginUsuarioCommand(
+            String login,
+            String senha)
+    {}
 
 }
