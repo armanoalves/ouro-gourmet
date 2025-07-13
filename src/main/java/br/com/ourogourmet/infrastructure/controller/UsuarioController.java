@@ -1,12 +1,12 @@
 package br.com.ourogourmet.infrastructure.controller;
 
+import br.com.ourogourmet.application.interfaces.*;
 import br.com.ourogourmet.core.dto.AlterarUsuarioDTO;
 import br.com.ourogourmet.core.dto.CriarUsuarioDTO;
 import br.com.ourogourmet.core.dto.TrocarSenhaUsuarioDTO;
 import br.com.ourogourmet.core.dto.ValidarLoginUsuarioDTO;
 import br.com.ourogourmet.core.entities.Usuario;
 import br.com.ourogourmet.core.exceptions.UsuarioCamposInvalidosException;
-import br.com.ourogourmet.core.interfaces.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Data;

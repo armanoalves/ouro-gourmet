@@ -2,7 +2,7 @@ package br.com.ourogourmet.infrastructure.gateway;
 
 import br.com.ourogourmet.core.entities.Usuario;
 import br.com.ourogourmet.core.exceptions.UsuarioNaoEncontradoException;
-import br.com.ourogourmet.core.interfaces.UsuarioRepository;
+import br.com.ourogourmet.application.interfaces.UsuarioRepository;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,8 @@
-package br.com.ourogourmet.core.usecases;
+package br.com.ourogourmet.application.usecases;
 
 import br.com.ourogourmet.core.entities.Usuario;
-import br.com.ourogourmet.core.interfaces.GetAllUsuarioUseCase;
-import br.com.ourogourmet.core.interfaces.UsuarioRepository;
+import br.com.ourogourmet.application.interfaces.GetAllUsuarioUseCase;
+import br.com.ourogourmet.application.interfaces.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

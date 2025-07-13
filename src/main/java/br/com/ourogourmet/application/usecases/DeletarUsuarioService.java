@@ -1,9 +1,9 @@
-package br.com.ourogourmet.core.usecases;
+package br.com.ourogourmet.application.usecases;
 
 import br.com.ourogourmet.core.exceptions.UsuarioNaoDeletadoException;
 import br.com.ourogourmet.core.exceptions.UsuarioNaoEncontradoException;
-import br.com.ourogourmet.core.interfaces.DeletarUsuarioUseCase;
-import br.com.ourogourmet.core.interfaces.UsuarioRepository;
+import br.com.ourogourmet.application.interfaces.DeletarUsuarioUseCase;
+import br.com.ourogourmet.application.interfaces.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 @Service

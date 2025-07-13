@@ -1,4 +1,4 @@
-package br.com.ourogourmet.core.interfaces;
+package br.com.ourogourmet.application.interfaces;
 
 public interface DeletarUsuarioUseCase {
     void delete(String id);

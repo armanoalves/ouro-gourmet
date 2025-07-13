@@ -1,9 +1,9 @@
-package br.com.ourogourmet.core.usecases;
+package br.com.ourogourmet.application.usecases;
 
 import br.com.ourogourmet.core.dto.ValidarLoginUsuarioDTO;
 import br.com.ourogourmet.core.exceptions.UsuarioSenhaInvalidaException;
-import br.com.ourogourmet.core.interfaces.UsuarioRepository;
-import br.com.ourogourmet.core.interfaces.ValidarLoginUsuarioUseCase;
+import br.com.ourogourmet.application.interfaces.UsuarioRepository;
+import br.com.ourogourmet.application.interfaces.ValidarLoginUsuarioUseCase;
 import org.springframework.stereotype.Service;
 
 @Service

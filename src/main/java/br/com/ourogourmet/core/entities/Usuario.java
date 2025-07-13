@@ -3,26 +3,18 @@ package br.com.ourogourmet.core.entities;
 
 import br.com.ourogourmet.core.dto.AlterarUsuarioDTO;
 import br.com.ourogourmet.core.dto.CriarUsuarioDTO;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@DynamicInsert
-@DynamicUpdate
-@Getter
 public class Usuario {
 
-    @Id
     private String id;
     private String nome;
     private String email;
@@ -31,7 +23,6 @@ public class Usuario {
     private String senha;
     private LocalDate dataAlteracao;
     private String endereco;
-    // private TipoUsuario usuario = null;
 
     public Usuario(AlterarUsuarioDTO alterarUsuarioDTO){
         this.email = alterarUsuarioDTO.email();
