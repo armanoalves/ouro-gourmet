@@ -1,9 +1,7 @@
 package br.com.ourogourmet.infrastructure.persistence;
 
 import br.com.ourogourmet.core.entities.Usuario;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -49,4 +47,8 @@ public class UsuarioEntity {
         usuario.setId(this.id);
         return usuario;
     }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tipo_usuario_id", nullable = false)
+    private TipoUsuarioEntity tipoUsuario;
 }
