@@ -4,6 +4,7 @@ import br.com.ourogourmet.core.entities.Restaurante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalTime;
 
@@ -11,6 +12,7 @@ import static java.util.Objects.nonNull;
 
 @Entity
 @Getter
+@Setter
 @AllArgsConstructor
 @Table(name="restaurante")
 public class RestauranteEntity {
@@ -30,6 +32,7 @@ public class RestauranteEntity {
     public RestauranteEntity(){}
 
     public RestauranteEntity(Restaurante restaurante){
+        this.id = nonNull(restaurante.getId()) ? this.getId() : null;
         this.nome = restaurante.getNome();
         this.tipoCozinha = restaurante.getTipoCozinha();
         this.horarioFuncionamentoDe = restaurante.getHorarioFuncionamentoDe();
@@ -42,7 +45,7 @@ public class RestauranteEntity {
                 this.tipoCozinha,
                 this.horarioFuncionamentoDe,
                 this.horarioFuncionamentoAte,
-                this.usuario.toDomain());
+                nonNull(this.usuario) ? this.usuario.toDomain() : null);
         restaurante.setId(this.id);
         return restaurante;
     }

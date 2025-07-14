@@ -59,7 +59,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> saveUsuario(
+    public ResponseEntity<Void> criarUsuario(
             @RequestBody CriarUsuarioDTO usuario){
 
         var erros = this.validator.validateObject(usuario)

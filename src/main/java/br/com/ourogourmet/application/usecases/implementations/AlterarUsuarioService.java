@@ -17,12 +17,12 @@ public class AlterarUsuarioService implements AlterarUsuarioUseCase {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public void update(AlterarUsuarioCommand usuarioDto, String id) {
+    public void update(AlterarUsuarioCommand cmd, String id) {
         var usuarioExistente = usuarioRepository.findById(id);
 
-        validarAlteracoes(usuarioExistente, usuarioDto);
+        validarAlteracoes(usuarioExistente, cmd);
 
-        Usuario usuarioAlterado = Usuario.alterar(usuarioDto);
+        Usuario usuarioAlterado = Usuario.alterar(cmd);
         var update = this.usuarioRepository.update(usuarioAlterado, id);
 
         if (update == 0) {
@@ -40,7 +40,7 @@ public class AlterarUsuarioService implements AlterarUsuarioUseCase {
             throw new UsuarioDuplicadoException("do e-mail");
         }
 
-        if (!novoUsuario.ativo()) {
+        if (Boolean.FALSE.equals(novoUsuario.ativo())) {
             throw new UsuarioValidacaoException("O campo 'ativo' não pode ser falso.");
         }
     }
