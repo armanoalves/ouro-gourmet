@@ -1,6 +1,0 @@
-id
-Nome
-Descrição
-Preço
-Disponibilidade para pedir apenas no Restaurante
-Foto do prato (como estávamos fazendo um serviço de back-end e a foto não será utilizada, podemos apenas salvar um caminho de onde a foto estaria)

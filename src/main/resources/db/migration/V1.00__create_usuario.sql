@@ -1,6 +1,7 @@
 CREATE TABLE usuario
 (
 	id VARCHAR(36),
+    nome VARCHAR(36),
 	email VARCHAR(255),
 	login VARCHAR(36),
 	ativo BOOLEAN,
