@@ -1,10 +1,12 @@
-package br.com.ourogourmet.cardapio.controllers;
+package br.com.ourogourmet.infrastructure.web.controller;
 
-import br.com.ourogourmet.cardapio.entities.Cardapio;
-import br.com.ourogourmet.cardapio.exceptions.CardapioCamposInvalidosException;
-import br.com.ourogourmet.cardapio.usecase.*;
-import br.com.ourogourmet.cardapio.usecase.AlterarCardapioUseCase.AlterarCardapioDTO;
-import br.com.ourogourmet.cardapio.usecase.CriarCardapioUseCase.CriarCardapioDTO;
+import br.com.ourogourmet.application.usecases.*;
+import br.com.ourogourmet.application.usecases.AlterarCardapioUseCase.AlterarCardapioComand;
+import br.com.ourogourmet.application.usecases.CriarCardapioUseCase.CriarCardapioCommand;
+import br.com.ourogourmet.core.entities.Cardapio;
+import br.com.ourogourmet.core.exceptions.CardapioCamposInvalidosException;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.AlterarCardapioDTO;
+import br.com.ourogourmet.infrastructure.web.controller.dtos.CriarCardapioDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.Data;
 import org.slf4j.Logger;
@@ -69,27 +71,40 @@ public class CardapioController {
                 .stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toSet());
         if (!erros.isEmpty())
             throw new CardapioCamposInvalidosException(erros);
-        this.criarCardapio.save(cardapioDTO);
+
+        this.criarCardapio.save(new CriarCardapioCommand(
+                cardapioDTO.nome(),
+                cardapioDTO.descricao(),
+                cardapioDTO.preco(),
+                cardapioDTO.foto(),
+                cardapioDTO.cosumoLocal()));
+
         return ResponseEntity.status(200).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateUsuario(
+    public ResponseEntity<Void> update(
             @PathVariable("id") String id,
             @RequestBody AlterarCardapioDTO cardapioDTO) {
 
         var erros = this.validator.validateObject(cardapioDTO)
                 .getAllErrors()
                 .stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toSet());
+
         if (!erros.isEmpty())
             throw new CardapioCamposInvalidosException(erros);
-        this.alterarCardapio.update(cardapioDTO, id);
+
+        this.alterarCardapio.update(new AlterarCardapioComand(cardapioDTO.nome(),
+                cardapioDTO.descricao(),
+                cardapioDTO.preco(),
+                cardapioDTO.foto(),
+                cardapioDTO.cosumoLocal()), id);
         var status = HttpStatus.NO_CONTENT;
         return ResponseEntity.status(status.value()).build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUsuario(
+    public ResponseEntity<Void> delete(
             @PathVariable("id") String id) {
         this.deletarCardapio.delete(id);
         return ResponseEntity.ok().build();

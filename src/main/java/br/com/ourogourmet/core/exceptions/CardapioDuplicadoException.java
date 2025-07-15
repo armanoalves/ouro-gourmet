@@ -1,4 +1,4 @@
-package br.com.ourogourmet.cardapio.exceptions;
+package br.com.ourogourmet.core.exceptions;
 
 public class CardapioDuplicadoException extends RuntimeException {
     public CardapioDuplicadoException(String duplicado) {

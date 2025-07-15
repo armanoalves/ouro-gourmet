@@ -1,6 +1,6 @@
-package br.com.ourogourmet.cardapio.usecase;
+package br.com.ourogourmet.application.usecases;
 
-import br.com.ourogourmet.cardapio.entities.Cardapio;
+import br.com.ourogourmet.core.entities.Cardapio;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package br.com.ourogourmet.cardapio.usecase;
+package br.com.ourogourmet.application.usecases;
 
 public interface DeletarCardapioUseCase {
     void delete(String id);

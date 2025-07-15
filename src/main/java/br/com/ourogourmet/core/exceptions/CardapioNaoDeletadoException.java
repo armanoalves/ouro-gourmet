@@ -1,4 +1,4 @@
-package br.com.ourogourmet.cardapio.exceptions;
+package br.com.ourogourmet.core.exceptions;
 
 public class CardapioNaoDeletadoException extends RuntimeException {
     public CardapioNaoDeletadoException(String id) {

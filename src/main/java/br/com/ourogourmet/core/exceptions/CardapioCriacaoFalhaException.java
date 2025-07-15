@@ -1,4 +1,4 @@
-package br.com.ourogourmet.cardapio.exceptions;
+package br.com.ourogourmet.core.exceptions;
 
 import java.util.Set;
 import java.util.stream.Collectors;

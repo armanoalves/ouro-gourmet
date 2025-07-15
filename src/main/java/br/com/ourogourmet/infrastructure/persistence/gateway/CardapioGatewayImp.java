@@ -1,19 +1,19 @@
-package br.com.ourogourmet.cardapio.repositories;
+package br.com.ourogourmet.infrastructure.persistence.gateway;
 
-import br.com.ourogourmet.cardapio.entities.Cardapio;
-import br.com.ourogourmet.usuario.entities.Usuario;
-import br.com.ourogourmet.usuario.exceptions.UsuarioNaoEncontradoException;
+import br.com.ourogourmet.application.interfaces.CardapioGateway;
+import br.com.ourogourmet.core.entities.Cardapio;
+import br.com.ourogourmet.core.exceptions.CardapioNaoEncontradoException;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class CardapioRepositoryImp implements CardapioRepository {
+public class CardapioGatewayImp implements CardapioGateway {
 
     private final JdbcClient jdbcClient;
 
-    public CardapioRepositoryImp(JdbcClient jdbcClient) {
+    public CardapioGatewayImp(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
     }
 
@@ -24,7 +24,7 @@ public class CardapioRepositoryImp implements CardapioRepository {
                 .param("id", id)
                 .query(Cardapio.class)
                 .optional()
-                .orElseThrow(UsuarioNaoEncontradoException::new);
+                .orElseThrow(CardapioNaoEncontradoException::new);
     }
 
     @Override
@@ -40,16 +40,14 @@ public class CardapioRepositoryImp implements CardapioRepository {
     @Override
     public Integer save(Cardapio cardapio) {
         return this.jdbcClient
-                .sql("INSERT into cardapio (id, nome, descricao, preco, consumo_local, foto, data_alteracao, data_criacao) " +
-                        "VALUES (:id, :nome,:descricao,:preco, :consumoLocal, :foto, :dataAlteracao, :dataCriacao)")
+                .sql("INSERT into cardapio (id, nome, descricao, preco, consumo_local, foto) " +
+                        "VALUES (:id, :nome,:descricao,:preco, :consumoLocal, :foto)")
                 .param("id", cardapio.getId())
                 .param("nome", cardapio.getNome())
                 .param("descricao", cardapio.getDescricao())
                 .param("preco", cardapio.getPreco())
                 .param("consumoLocal", cardapio.getConsumoLocal())
                 .param("foto", cardapio.getFoto())
-                .param("dataAlteracao", cardapio.getDataAlteracao())
-                .param("dataCriacao", cardapio.getDataCriacao())
                 .update();
     }
 
@@ -57,7 +55,7 @@ public class CardapioRepositoryImp implements CardapioRepository {
     public Integer update(Cardapio cardapio, String id) {
         return this.jdbcClient.sql("UPDATE cardapio " +
                         "SET nome = :nome, descricao = :descricao, " +
-                        "preco = :preco, consumoLocal = :consumoLocal, foto = :foto, data_alteracao = :dataAlteracao " +
+                        "preco = :preco, consumoLocal = :consumoLocal, foto = :foto" +
                         "WHERE id = :id")
                 .param("id", id)
                 .param("nome", cardapio.getNome())
@@ -65,7 +63,6 @@ public class CardapioRepositoryImp implements CardapioRepository {
                 .param("preco", cardapio.getPreco())
                 .param("consumoLocal", cardapio.getConsumoLocal())
                 .param("foto", cardapio.getFoto())
-                .param("dataAlteracao", cardapio.getDataAlteracao())
                 .update();
     }
 
