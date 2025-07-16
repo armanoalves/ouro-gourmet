@@ -5,6 +5,8 @@ import br.com.ourogourmet.application.usecases.AlterarCardapioUseCase.AlterarCar
 import br.com.ourogourmet.application.usecases.CriarCardapioUseCase.CriarCardapioCommand;
 import br.com.ourogourmet.core.entities.Cardapio;
 import br.com.ourogourmet.core.exceptions.CardapioCamposInvalidosException;
+import br.com.ourogourmet.infrastructure.persistence.CardapioEntity;
+import br.com.ourogourmet.infrastructure.persistence.gateway.CardapioGatewayImpl2;
 import br.com.ourogourmet.infrastructure.web.controller.dtos.AlterarCardapioDTO;
 import br.com.ourogourmet.infrastructure.web.controller.dtos.CriarCardapioDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -34,19 +36,22 @@ public class CardapioController {
     private final GetAllCardapioUseCase getAllCardapios;
     private final GetByIdCardapioUseCase getByIdCardapio;
     private final Validator validator;
+    private final CardapioGatewayImpl2 cardapioGatewayImpl2;
 
     public CardapioController(CriarCardapioUseCase criarCardapio,
                               AlterarCardapioUseCase alterarCardapio,
                               DeletarCardapioUseCase deletarCardapio,
                               GetAllCardapioUseCase getAllCardapios,
                               GetByIdCardapioUseCase getByIdCardapio,
-                              Validator validator) {
+                              Validator validator,
+                              CardapioGatewayImpl2 cardapioGatewayImpl2) {
         this.criarCardapio = criarCardapio;
         this.alterarCardapio = alterarCardapio;
         this.deletarCardapio = deletarCardapio;
         this.getAllCardapios = getAllCardapios;
         this.getByIdCardapio = getByIdCardapio;
         this.validator = validator;
+        this.cardapioGatewayImpl2 = cardapioGatewayImpl2;
     }
 
     @GetMapping
@@ -72,12 +77,20 @@ public class CardapioController {
         if (!erros.isEmpty())
             throw new CardapioCamposInvalidosException(erros);
 
-        this.criarCardapio.save(new CriarCardapioCommand(
+        var cmd = new CriarCardapioCommand(
                 cardapioDTO.nome(),
                 cardapioDTO.descricao(),
                 cardapioDTO.preco(),
                 cardapioDTO.foto(),
-                cardapioDTO.cosumoLocal()));
+                cardapioDTO.cosumoLocal());
+        var incluirCardapio = Cardapio.incluir(cmd);
+
+
+        var entity = new CardapioEntity(incluirCardapio);
+
+
+        this.cardapioGatewayImpl2.save(entity);
+
 
         return ResponseEntity.status(200).build();
     }

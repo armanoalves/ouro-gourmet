@@ -2,10 +2,7 @@ package br.com.ourogourmet.infrastructure.persistence;
 
 import br.com.ourogourmet.core.entities.Cardapio;
 import br.com.ourogourmet.core.entities.Usuario;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDateTime;
 
+@Table(name="cardapio")
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
