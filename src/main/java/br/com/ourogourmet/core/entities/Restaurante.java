@@ -2,6 +2,7 @@ package br.com.ourogourmet.core.entities;
 
 import java.time.LocalTime;
 
+
 public class Restaurante {
 
     private Long id;

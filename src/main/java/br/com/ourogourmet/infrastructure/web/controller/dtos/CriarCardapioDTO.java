@@ -10,7 +10,7 @@ public record CriarCardapioDTO(
         @NotBlank(message = "O campo descricao é obrigatório.")
         String descricao,
 
-        @NotBlank(message = "O campo preco é obrigatório.")
+        @NotNull(message = "O campo preco é obrigatório.")
         Double preco,
 
         String foto,
