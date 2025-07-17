@@ -10,10 +10,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class CriarRestauranteService implements CriarRestauranteUseCase {
 
-    private final RestauranteGateway restauranteRepository;
 
     @Override
-    public Long execute(CriarRestauranteCommand restauranteCommand) {
+    public Long execute(CriarRestauranteCommand restauranteCommand, RestauranteGateway restauranteRepository) {
 
         /*this.restauranteRepository.findByNome(restauranteCommand.nome()).ifPresent(restaurante -> {
             throw new RestauranteDuplicadoException(restaurante.getNome());
@@ -26,7 +25,7 @@ public class CriarRestauranteService implements CriarRestauranteUseCase {
                 restauranteCommand.horarioFuncionamentoAte(),
                 null);
 
-        return this.restauranteRepository.incluir(restaurante);
+        return restauranteRepository.incluir(restaurante);
     }
 
 }

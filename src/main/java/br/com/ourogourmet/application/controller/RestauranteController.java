@@ -1,12 +1,14 @@
 package br.com.ourogourmet.application.controller;
 
+import br.com.ourogourmet.application.controller.dtos.AlterarRestauranteDTO;
+import br.com.ourogourmet.application.controller.dtos.CriarRestauranteDTO;
+import br.com.ourogourmet.domain.exceptions.RestauranteCamposInvalidosException;
 import br.com.ourogourmet.domain.usecases.AlterarRestauranteUseCase;
 import br.com.ourogourmet.domain.usecases.AlterarRestauranteUseCase.AlterarRestauranteCommand;
 import br.com.ourogourmet.domain.usecases.CriarRestauranteUseCase;
 import br.com.ourogourmet.domain.usecases.CriarRestauranteUseCase.CriarRestauranteCommand;
-import br.com.ourogourmet.domain.exceptions.RestauranteCamposInvalidosException;
-import br.com.ourogourmet.application.controller.dtos.AlterarRestauranteDTO;
-import br.com.ourogourmet.application.controller.dtos.CriarRestauranteDTO;
+import br.com.ourogourmet.infrastructure.adapter.repository.RestauranteEntityRepository;
+import br.com.ourogourmet.infrastructure.repository.RestauranteRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -28,6 +30,7 @@ public class RestauranteController {
 
     private final CriarRestauranteUseCase criarRestauranteUseCase;
     private final AlterarRestauranteUseCase alterarRestauranteUseCase;
+    private final RestauranteRepository restauranteRepository;
 
     private final Validator validator;
 
@@ -49,7 +52,7 @@ public class RestauranteController {
                 dto.tipoCozinha(),
                 LocalTime.parse(dto.horaFuncionamentoDe()),
                 LocalTime.parse(dto.horarioFuncionamentoAte()));
-        var id = criarRestauranteUseCase.execute(cmd);
+        var id = criarRestauranteUseCase.execute(cmd, new RestauranteEntityRepository(restauranteRepository));
 
         ResponseEntity.created(fromPath(RestauranteController.PATH + "/{id}").build(id)).build();
         return ResponseEntity.ok().build();
@@ -74,7 +77,7 @@ public class RestauranteController {
                 LocalTime.parse(dto.horarioFuncionamentoAte()),
                 "");
 
-        this.alterarRestauranteUseCase.execute(cmd);
+        this.alterarRestauranteUseCase.execute(cmd,new RestauranteEntityRepository(restauranteRepository));
 
         var status = HttpStatus.NO_CONTENT;
 
