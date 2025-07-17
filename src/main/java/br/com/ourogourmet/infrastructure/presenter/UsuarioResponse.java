@@ -1,0 +1,13 @@
+package br.com.ourogourmet.infrastructure.presenter;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+public class UsuarioResponse {
+    private String id;
+    private String nome;
+    private String email;
+    private String login;
+    private Boolean ativo;
+    private String endereco;
+}
