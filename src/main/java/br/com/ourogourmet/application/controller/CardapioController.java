@@ -1,14 +1,12 @@
 package br.com.ourogourmet.application.controller;
 
+import br.com.ourogourmet.application.controller.dtos.AlterarCardapioDTO;
+import br.com.ourogourmet.application.controller.dtos.CriarCardapioDTO;
+import br.com.ourogourmet.domain.entities.Cardapio;
+import br.com.ourogourmet.domain.exceptions.CardapioCamposInvalidosException;
 import br.com.ourogourmet.domain.usecases.*;
 import br.com.ourogourmet.domain.usecases.AlterarCardapioUseCase.AlterarCardapioComand;
 import br.com.ourogourmet.domain.usecases.CriarCardapioUseCase.CriarCardapioCommand;
-import br.com.ourogourmet.domain.entities.Cardapio;
-import br.com.ourogourmet.domain.exceptions.CardapioCamposInvalidosException;
-import br.com.ourogourmet.infrastructure.model.CardapioEntity;
-import br.com.ourogourmet.infrastructure.repository.CardapioGatewayImpl;
-import br.com.ourogourmet.application.controller.dtos.AlterarCardapioDTO;
-import br.com.ourogourmet.application.controller.dtos.CriarCardapioDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.Data;
 import org.slf4j.Logger;
