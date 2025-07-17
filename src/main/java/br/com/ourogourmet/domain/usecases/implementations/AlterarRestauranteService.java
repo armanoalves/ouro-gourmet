@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class AlterarRestauranteService implements AlterarRestauranteUseCase {
 
-    private final RestauranteGateway restauranteRepository;
-
     @Override
-    public void execute(AlterarRestauranteCommand restauranteCommand) {
+    public void execute(AlterarRestauranteCommand restauranteCommand,RestauranteGateway restauranteRepository) {
 
         restauranteRepository.alterar(restauranteCommand);
 
