@@ -1,4 +1,4 @@
-package br.com.ourogourmet.application.controller.exception;
+package br.com.ourogourmet.application.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

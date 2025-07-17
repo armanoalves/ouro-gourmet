@@ -1,4 +1,4 @@
-package br.com.ourogourmet.infrastructure.presenter;
+package br.com.ourogourmet.application.presenter;
 
 import br.com.ourogourmet.domain.entities.Restaurante;
 
