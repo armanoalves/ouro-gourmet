@@ -6,7 +6,7 @@ import br.com.ourogourmet.domain.usecases.CriarCardapioUseCase.CriarCardapioComm
 import br.com.ourogourmet.domain.entities.Cardapio;
 import br.com.ourogourmet.domain.exceptions.CardapioCamposInvalidosException;
 import br.com.ourogourmet.infrastructure.model.CardapioEntity;
-import br.com.ourogourmet.infrastructure.repository.CardapioGatewayImpl2;
+import br.com.ourogourmet.infrastructure.repository.CardapioGatewayImpl;
 import br.com.ourogourmet.application.controller.dtos.AlterarCardapioDTO;
 import br.com.ourogourmet.application.controller.dtos.CriarCardapioDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -36,22 +36,19 @@ public class CardapioController {
     private final GetAllCardapioUseCase getAllCardapios;
     private final GetByIdCardapioUseCase getByIdCardapio;
     private final Validator validator;
-    private final CardapioGatewayImpl2 cardapioGatewayImpl2;
 
     public CardapioController(CriarCardapioUseCase criarCardapio,
                               AlterarCardapioUseCase alterarCardapio,
                               DeletarCardapioUseCase deletarCardapio,
                               GetAllCardapioUseCase getAllCardapios,
                               GetByIdCardapioUseCase getByIdCardapio,
-                              Validator validator,
-                              CardapioGatewayImpl2 cardapioGatewayImpl2) {
+                              Validator validator) {
         this.criarCardapio = criarCardapio;
         this.alterarCardapio = alterarCardapio;
         this.deletarCardapio = deletarCardapio;
         this.getAllCardapios = getAllCardapios;
         this.getByIdCardapio = getByIdCardapio;
         this.validator = validator;
-        this.cardapioGatewayImpl2 = cardapioGatewayImpl2;
     }
 
     @GetMapping
@@ -83,14 +80,7 @@ public class CardapioController {
                 cardapioDTO.preco(),
                 cardapioDTO.foto(),
                 cardapioDTO.cosumoLocal());
-        var incluirCardapio = Cardapio.incluir(cmd);
-
-
-        var entity = new CardapioEntity(incluirCardapio);
-
-
-        this.cardapioGatewayImpl2.save(entity);
-
+         Cardapio.incluir(cmd);
 
         return ResponseEntity.status(200).build();
     }

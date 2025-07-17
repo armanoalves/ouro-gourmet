@@ -1,76 +1,56 @@
 package br.com.ourogourmet.infrastructure.repository;
 
-import br.com.ourogourmet.domain.gateway.CardapioGateway;
 import br.com.ourogourmet.domain.entities.Cardapio;
 import br.com.ourogourmet.domain.exceptions.CardapioNaoEncontradoException;
+import br.com.ourogourmet.domain.gateway.CardapioGateway;
+import br.com.ourogourmet.infrastructure.model.CardapioEntity;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
+@Profile("!test")
 public class CardapioGatewayImp implements CardapioGateway {
 
-    private final JdbcClient jdbcClient;
+    private final CardapioJpaRepository cardapioJpaRepository;
 
-    public CardapioGatewayImp(JdbcClient jdbcClient) {
-        this.jdbcClient = jdbcClient;
+    public CardapioGatewayImp(CardapioJpaRepository cardapioJpaRepository) {
+        this.cardapioJpaRepository = cardapioJpaRepository;
     }
 
     @Override
-    public Cardapio findById(String id) {
-        return this.jdbcClient
-                .sql("SELECT * FROM cardapio WHERE id = :id")
-                .param("id", id)
-                .query(Cardapio.class)
-                .optional()
-                .orElseThrow(CardapioNaoEncontradoException::new);
+    public Cardapio buscarPorId(String id) {
+        CardapioEntity cardapioEntity = cardapioJpaRepository.findById(id)
+                .orElseThrow(() -> new CardapioNaoEncontradoException());
+        return Cardapio.create(cardapioEntity.getNome(),
+                cardapioEntity.getDescricao(),
+                cardapioEntity.getPreco(),
+                cardapioEntity.getConsumoLocal(),
+                cardapioEntity.getFoto());
     }
 
     @Override
-    public List<Cardapio> findAll(int size, int offset) {
-        return this.jdbcClient
-                .sql("SELECT * FROM cardapio LIMIT :size OFFSET :offset")
-                .param("size", size)
-                .param("offset", offset)
-                .query(Cardapio.class)
-                .list();
+    public List<Cardapio> buscarTodos(int size, int offset) {
+        return List.of();
     }
 
     @Override
-    public Integer save(Cardapio cardapio) {
-        return this.jdbcClient
-                .sql("INSERT into cardapio (id, nome, descricao, preco, consumo_local, foto) " +
-                        "VALUES (:id, :nome,:descricao,:preco, :consumoLocal, :foto)")
-                .param("id", cardapio.getId())
-                .param("nome", cardapio.getNome())
-                .param("descricao", cardapio.getDescricao())
-                .param("preco", cardapio.getPreco())
-                .param("consumoLocal", cardapio.getConsumoLocal())
-                .param("foto", cardapio.getFoto())
-                .update();
+    public Integer salvar(Cardapio cardapio) {
+        return 0;
     }
 
     @Override
-    public Integer update(Cardapio cardapio, String id) {
-        return this.jdbcClient.sql("UPDATE cardapio " +
-                        "SET nome = :nome, descricao = :descricao, " +
-                        "preco = :preco, consumoLocal = :consumoLocal, foto = :foto" +
-                        "WHERE id = :id")
-                .param("id", id)
-                .param("nome", cardapio.getNome())
-                .param("descricao", cardapio.getDescricao())
-                .param("preco", cardapio.getPreco())
-                .param("consumoLocal", cardapio.getConsumoLocal())
-                .param("foto", cardapio.getFoto())
-                .update();
+    public Integer atualizar(Cardapio cardapio, String id) {
+        return 0;
     }
 
     @Override
-    public Integer delete(String id) {
-        return this.jdbcClient.sql("DELETE FROM cardapio WHERE id = :id")
-                .param("id", id)
-                .update();
+    public Integer deletar(String id) {
+        return 0;
     }
-
 }

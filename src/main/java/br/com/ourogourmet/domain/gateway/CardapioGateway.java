@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface CardapioGateway {
 
-    Cardapio findById(String id);
-    List<Cardapio> findAll(int size, int offset);
-    Integer save(Cardapio cardapio);
-    Integer update(Cardapio cardapio, String id);
-    Integer delete(String id);
+    Cardapio buscarPorId(String id);
+    List<Cardapio> buscarTodos(int size, int offset);
+    Integer salvar(Cardapio cardapio);
+    Integer atualizar(Cardapio cardapio, String id);
+    Integer deletar(String id);
 }
