@@ -2,11 +2,13 @@ package br.com.ourogourmet.infrastructure.adapter.repository;
 
 import br.com.ourogourmet.domain.entities.Restaurante;
 import br.com.ourogourmet.domain.gateway.RestauranteGateway;
-import br.com.ourogourmet.domain.usecases.AlterarRestauranteUseCase.AlterarRestauranteCommand;
 import br.com.ourogourmet.infrastructure.model.RestauranteEntity;
 import br.com.ourogourmet.infrastructure.repository.RestauranteRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -25,16 +27,47 @@ public class RestauranteEntityRepository implements RestauranteGateway {
 
         var restauranteEntity = this.restauranteRepository.findById(id);
 
-        return Optional.ofNullable(restauranteEntity.get().toDomain());
+        return restauranteEntity.map(RestauranteEntity::toDomain);
     }
 
     @Override
-    public Optional<Restaurante> findByNome(String nome) {
-        return Optional.empty();
+    public Optional<Restaurante> buscarPorNome(String nome) {
+
+        var restauranteEntity = this.restauranteRepository.findByNome(nome);
+
+        return restauranteEntity.map(RestauranteEntity::toDomain);
+
     }
 
     @Override
-    public void alterar(AlterarRestauranteCommand alterarRestauranteCommand) {
+    public List<Restaurante> buscarTodos(int page, int pageSize) {
 
+        var restaurantes = this.restauranteRepository.findAll(PageRequest.of(page-1, pageSize)).getContent();
+
+        return restaurantes.stream()
+                .map(RestauranteEntity::toDomain)
+                .toList();
     }
+
+    @Override
+    public void alterar(Restaurante restaurante) {
+        var restauranteEntity = this.restauranteRepository.findById(restaurante.getId());
+
+        restauranteEntity.ifPresent(present->{
+            present.setNome(restaurante.getNome());
+            present.setTipoCozinha(restaurante.getTipoCozinha());
+            present.setHorarioFuncionamentoDe(restaurante.getHorarioFuncionamentoDe());
+            present.setHorarioFuncionamentoAte(restaurante.getHorarioFuncionamentoAte());
+            this.restauranteRepository.save(present);
+        });
+    }
+
+    @Override
+    public void deletar(Restaurante restaurante) {
+
+        var restauranteEntity = this.restauranteRepository.findById(restaurante.getId());
+
+        restauranteEntity.ifPresent(this.restauranteRepository::delete);
+    }
+
 }

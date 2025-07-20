@@ -16,7 +16,7 @@ public class AlterarCardapioService implements AlterarCardapioUseCase {
     }
 
     public void update(AlterarCardapioComand cardapioDTO, String id) {
-        var cardapioExistente = cardapioRepository.findById(id);
+        var cardapioExistente = cardapioRepository.buscarPorId(id);
 
         if (cardapioExistente == null) {
             throw new CardapioNaoEncontradoException();
@@ -24,7 +24,7 @@ public class AlterarCardapioService implements AlterarCardapioUseCase {
 
         Cardapio cardapioAlterado = cardapioExistente.alterar(cardapioDTO);
 
-        var update = this.cardapioRepository.update(cardapioAlterado, id);
+        var update = this.cardapioRepository.atualizar(cardapioAlterado, id);
 
     }
 

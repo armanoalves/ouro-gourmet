@@ -1,8 +1,8 @@
 package br.com.ourogourmet.domain.usecases.implementations;
 
+import br.com.ourogourmet.domain.entities.Cardapio;
 import br.com.ourogourmet.domain.gateway.CardapioGateway;
 import br.com.ourogourmet.domain.usecases.GetAllCardapioUseCase;
-import br.com.ourogourmet.domain.entities.Cardapio;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +20,6 @@ public class GetAllCardapioService implements GetAllCardapioUseCase {
     public List<Cardapio> findAll(int page, int size){
         int offset = (page-1) * size;
 
-        return this.cardapioRepository.findAll(size,offset);
+        return this.cardapioRepository.buscarTodos(size,offset);
     }
 }

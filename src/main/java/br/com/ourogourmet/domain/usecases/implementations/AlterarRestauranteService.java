@@ -12,7 +12,17 @@ public class AlterarRestauranteService implements AlterarRestauranteUseCase {
     @Override
     public void execute(AlterarRestauranteCommand restauranteCommand,RestauranteGateway restauranteRepository) {
 
-        restauranteRepository.alterar(restauranteCommand);
+        var optionalRestaurante = restauranteRepository.buscarPorId(restauranteCommand.id());
+
+        optionalRestaurante.ifPresent(restaurante->{
+
+            restaurante.setNome(restauranteCommand.nome());
+            restaurante.setTipoCozinha(restauranteCommand.tipoCozinha());
+            restaurante.setHorarioFuncionamento(restauranteCommand.horarioFuncionamentoDe(),restauranteCommand.horarioFuncionamentoAte());
+
+            restauranteRepository.alterar(restaurante);
+
+        });
 
     }
 }

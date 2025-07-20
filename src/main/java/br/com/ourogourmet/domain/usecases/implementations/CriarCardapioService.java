@@ -20,7 +20,7 @@ public class CriarCardapioService implements CriarCardapioUseCase {
 
         var incluirCardapio = Cardapio.incluir(cardapioDTO);
 
-        var save = this.cardapioRepository.save(incluirCardapio);
+        var save = this.cardapioRepository.salvar(incluirCardapio);
 
         if (save != 1) {
             throw new CardapioCriacaoFalhaException("Erro ao salvar Cardapio");

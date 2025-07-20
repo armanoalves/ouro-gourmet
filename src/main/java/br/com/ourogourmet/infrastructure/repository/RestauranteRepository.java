@@ -9,9 +9,6 @@ import java.util.Optional;
 @Repository
 public interface RestauranteRepository extends JpaRepository<RestauranteEntity, Long> {
 
-    @Override
-    Optional<RestauranteEntity> findById(Long id);
+    Optional<RestauranteEntity> findByNome(String nome);
 
-    @Override
-    RestauranteEntity save(RestauranteEntity restaurante);
 }

@@ -2,10 +2,10 @@ package br.com.ourogourmet.application.controller;
 
 import br.com.ourogourmet.application.controller.dtos.AlterarRestauranteDTO;
 import br.com.ourogourmet.application.controller.dtos.CriarRestauranteDTO;
+import br.com.ourogourmet.domain.entities.Restaurante;
 import br.com.ourogourmet.domain.exceptions.RestauranteCamposInvalidosException;
-import br.com.ourogourmet.domain.usecases.AlterarRestauranteUseCase;
+import br.com.ourogourmet.domain.usecases.*;
 import br.com.ourogourmet.domain.usecases.AlterarRestauranteUseCase.AlterarRestauranteCommand;
-import br.com.ourogourmet.domain.usecases.CriarRestauranteUseCase;
 import br.com.ourogourmet.domain.usecases.CriarRestauranteUseCase.CriarRestauranteCommand;
 import br.com.ourogourmet.infrastructure.adapter.repository.RestauranteEntityRepository;
 import br.com.ourogourmet.infrastructure.repository.RestauranteRepository;
@@ -18,6 +18,7 @@ import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalTime;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.springframework.web.util.UriComponentsBuilder.fromPath;
@@ -30,6 +31,9 @@ public class RestauranteController {
 
     private final CriarRestauranteUseCase criarRestauranteUseCase;
     private final AlterarRestauranteUseCase alterarRestauranteUseCase;
+    private final DeletarRestauranteUseCase deletarRestauranteUseCase;
+    private final GetByIdRestauranteUseCase getByIdRestauranteUseCase;
+    private final GetAllRestauranteUseCase getAllRestaurantesUseCase;
     private final RestauranteRepository restauranteRepository;
 
     private final Validator validator;
@@ -83,4 +87,33 @@ public class RestauranteController {
 
         return ResponseEntity.status(status.value()).build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarRestaurante(
+            @PathVariable("id") Long id){
+
+        this.deletarRestauranteUseCase.execute(id,new RestauranteEntityRepository(restauranteRepository));
+
+        var status = HttpStatus.NO_CONTENT;
+
+        return ResponseEntity.status(status.value()).build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Restaurante>> buscarTodosRestaurantes(
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size){
+
+        var restaurantes = this.getAllRestaurantesUseCase.execute(page, size, new RestauranteEntityRepository(restauranteRepository));
+
+        return ResponseEntity.ok(restaurantes);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Restaurante> buscarRestaurantePorId(
+            @PathVariable("id") Long id){
+        var restaurante = this.getByIdRestauranteUseCase.execute(id, new RestauranteEntityRepository(restauranteRepository));
+        return ResponseEntity.ok(restaurante);
+    }
+
 }

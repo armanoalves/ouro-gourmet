@@ -17,7 +17,7 @@ public class DeletarCardapioService implements DeletarCardapioUseCase {
 
     @Override
     public void delete(String id) {
-        var delete = this.cardapioRepository.delete(id);
+        var delete = this.cardapioRepository.deletar(id);
 
         if (delete == 0) {
             throw new CardapioNaoEncontradoException();
