@@ -12,8 +12,6 @@ public class GetByIdRestauranteService implements GetByIdRestauranteUseCase {
     @Override
     public Restaurante execute(Long id, RestauranteGateway restauranteGateway) {
 
-        var restauranteOptional =  restauranteGateway.buscarPorId(id).orElseThrow(() -> new RestauranteNaoEncontradoException(id.toString()));;
-
-        return restauranteOptional;
+        return restauranteGateway.buscarPorId(id).orElseThrow(() -> new RestauranteNaoEncontradoException(id.toString()));
     }
 }

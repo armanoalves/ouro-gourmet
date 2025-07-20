@@ -1,7 +1,9 @@
 package br.com.ourogourmet.application.presenter;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+@Getter
 @AllArgsConstructor
 public class UsuarioResponse {
     private String id;

@@ -12,5 +12,6 @@ public interface RestauranteGateway {
     Optional<Restaurante> buscarPorNome(String nome);
     List<Restaurante> buscarTodos(int page, int pageSize);
     void alterar(Restaurante restaurante);
+    void alterarUsuario(Restaurante restaurante);
     void deletar(Restaurante restaurante);
 }

@@ -1,15 +1,18 @@
 package br.com.ourogourmet.application.controller;
 
 import br.com.ourogourmet.application.controller.dtos.AlterarRestauranteDTO;
+import br.com.ourogourmet.application.controller.dtos.AlterarUsuarioRestauranteDTO;
 import br.com.ourogourmet.application.controller.dtos.CriarRestauranteDTO;
 import br.com.ourogourmet.application.presenter.RestaurantePresenter;
 import br.com.ourogourmet.application.presenter.RestauranteResponse;
 import br.com.ourogourmet.domain.exceptions.RestauranteCamposInvalidosException;
 import br.com.ourogourmet.domain.usecases.*;
 import br.com.ourogourmet.domain.usecases.AlterarRestauranteUseCase.AlterarRestauranteCommand;
+import br.com.ourogourmet.domain.usecases.AlterarRestauranteUsuarioUseCase.AlterarRestauranteUsuarioCommand;
 import br.com.ourogourmet.domain.usecases.CriarRestauranteUseCase.CriarRestauranteCommand;
 import br.com.ourogourmet.infrastructure.adapter.repository.RestauranteEntityRepository;
 import br.com.ourogourmet.infrastructure.repository.RestauranteRepository;
+import br.com.ourogourmet.infrastructure.repository.UsuarioRepositoryImp;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -35,6 +38,7 @@ public class RestauranteController {
     private final DeletarRestauranteUseCase deletarRestauranteUseCase;
     private final GetByIdRestauranteUseCase getByIdRestauranteUseCase;
     private final GetAllRestauranteUseCase getAllRestaurantesUseCase;
+    private final AlterarRestauranteUsuarioUseCase alterarRestauranteUsuarioUseCase;
     private final RestaurantePresenter restaurantePresenter;
     private final RestauranteRepository restauranteRepository;
 
@@ -81,9 +85,23 @@ public class RestauranteController {
                 dto.tipoCozinha(),
                 LocalTime.parse(dto.horaFuncionamentoDe()),
                 LocalTime.parse(dto.horarioFuncionamentoAte()),
-                "");
+                dto.usuario().id());
 
-        this.alterarRestauranteUseCase.execute(cmd,new RestauranteEntityRepository(restauranteRepository));
+        this.alterarRestauranteUseCase.execute(cmd,new RestauranteEntityRepository(restauranteRepository) );
+
+        var status = HttpStatus.NO_CONTENT;
+
+        return ResponseEntity.status(status.value()).build();
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> alterarRestauranteUsuario(
+            @PathVariable("id") Long id,
+            @RequestBody AlterarUsuarioRestauranteDTO usuario){
+        
+        var cmd = new AlterarRestauranteUsuarioCommand(id,usuario.id());
+
+        this.alterarRestauranteUsuarioUseCase.execute(cmd,new RestauranteEntityRepository(restauranteRepository) );
 
         var status = HttpStatus.NO_CONTENT;
 

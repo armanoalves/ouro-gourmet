@@ -3,12 +3,15 @@ package br.com.ourogourmet.infrastructure.adapter.repository;
 import br.com.ourogourmet.domain.entities.Restaurante;
 import br.com.ourogourmet.domain.gateway.RestauranteGateway;
 import br.com.ourogourmet.infrastructure.model.RestauranteEntity;
+import br.com.ourogourmet.infrastructure.model.UsuarioEntity;
 import br.com.ourogourmet.infrastructure.repository.RestauranteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 import java.util.Optional;
+
+import static java.util.Objects.nonNull;
 
 @RequiredArgsConstructor
 public class RestauranteEntityRepository implements RestauranteGateway {
@@ -50,15 +53,25 @@ public class RestauranteEntityRepository implements RestauranteGateway {
 
     @Override
     public void alterar(Restaurante restaurante) {
-        var restauranteEntity = this.restauranteRepository.findById(restaurante.getId());
 
-        restauranteEntity.ifPresent(present->{
+        this.restauranteRepository.findById(restaurante.getId()).ifPresent(present->{
             present.setNome(restaurante.getNome());
             present.setTipoCozinha(restaurante.getTipoCozinha());
             present.setHorarioFuncionamentoDe(restaurante.getHorarioFuncionamentoDe());
             present.setHorarioFuncionamentoAte(restaurante.getHorarioFuncionamentoAte());
+            present.setUsuario(nonNull(restaurante.getUsuario()) ? new UsuarioEntity(restaurante.getUsuario()) : null);
             this.restauranteRepository.save(present);
         });
+    }
+
+    @Override
+    public void alterarUsuario(Restaurante restaurante) {
+
+        this.restauranteRepository.findById(restaurante.getId()).ifPresent(present->{
+            present.setUsuario(nonNull(restaurante.getUsuario()) ? new UsuarioEntity(restaurante.getUsuario()) : null);
+            this.restauranteRepository.save(present);
+        });
+
     }
 
     @Override

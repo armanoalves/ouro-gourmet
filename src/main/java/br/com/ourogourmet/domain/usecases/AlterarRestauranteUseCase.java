@@ -6,15 +6,15 @@ import java.time.LocalTime;
 
 public interface AlterarRestauranteUseCase {
 
-    void execute(AlterarRestauranteCommand restauranteCommand, RestauranteGateway restauranteRepository);
+    void execute(AlterarRestauranteCommand restauranteCommand, RestauranteGateway restauranteRepositor);
 
     record AlterarRestauranteCommand(
             Long id,
             String nome,
-           String tipoCozinha,
-           LocalTime horarioFuncionamentoDe,
-           LocalTime horarioFuncionamentoAte,
-           String usuarioId){
+            String tipoCozinha,
+            LocalTime horarioFuncionamentoDe,
+            LocalTime horarioFuncionamentoAte,
+            String usuarioId){
 
     }
 }
