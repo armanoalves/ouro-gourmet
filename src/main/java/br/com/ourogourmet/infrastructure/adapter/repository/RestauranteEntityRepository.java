@@ -6,7 +6,6 @@ import br.com.ourogourmet.infrastructure.model.RestauranteEntity;
 import br.com.ourogourmet.infrastructure.repository.RestauranteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;

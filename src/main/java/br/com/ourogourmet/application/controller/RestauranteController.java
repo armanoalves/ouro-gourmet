@@ -2,7 +2,8 @@ package br.com.ourogourmet.application.controller;
 
 import br.com.ourogourmet.application.controller.dtos.AlterarRestauranteDTO;
 import br.com.ourogourmet.application.controller.dtos.CriarRestauranteDTO;
-import br.com.ourogourmet.domain.entities.Restaurante;
+import br.com.ourogourmet.application.presenter.RestaurantePresenter;
+import br.com.ourogourmet.application.presenter.RestauranteResponse;
 import br.com.ourogourmet.domain.exceptions.RestauranteCamposInvalidosException;
 import br.com.ourogourmet.domain.usecases.*;
 import br.com.ourogourmet.domain.usecases.AlterarRestauranteUseCase.AlterarRestauranteCommand;
@@ -34,6 +35,7 @@ public class RestauranteController {
     private final DeletarRestauranteUseCase deletarRestauranteUseCase;
     private final GetByIdRestauranteUseCase getByIdRestauranteUseCase;
     private final GetAllRestauranteUseCase getAllRestaurantesUseCase;
+    private final RestaurantePresenter restaurantePresenter;
     private final RestauranteRepository restauranteRepository;
 
     private final Validator validator;
@@ -100,20 +102,21 @@ public class RestauranteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Restaurante>> buscarTodosRestaurantes(
+    public ResponseEntity<List<RestauranteResponse>> buscarTodosRestaurantes(
             @RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "size", defaultValue = "10") int size){
 
         var restaurantes = this.getAllRestaurantesUseCase.execute(page, size, new RestauranteEntityRepository(restauranteRepository));
 
-        return ResponseEntity.ok(restaurantes);
+        return ResponseEntity.ok(restaurantes.stream()
+                .map(restaurantePresenter::presenter).toList());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Restaurante> buscarRestaurantePorId(
+    public ResponseEntity<RestauranteResponse> buscarRestaurantePorId(
             @PathVariable("id") Long id){
         var restaurante = this.getByIdRestauranteUseCase.execute(id, new RestauranteEntityRepository(restauranteRepository));
-        return ResponseEntity.ok(restaurante);
+        return ResponseEntity.ok(restaurantePresenter.presenter(restaurante));
     }
 
 }
