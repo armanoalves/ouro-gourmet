@@ -1,9 +1,11 @@
 package br.com.ourogourmet.domain.usecases.implementations;
 
+import br.com.ourogourmet.domain.exceptions.UsuarioNaoEncontradoException;
 import br.com.ourogourmet.domain.gateway.UsuarioGateway;
 import br.com.ourogourmet.domain.usecases.TrocarSenhaUsuarioUseCase;
-import br.com.ourogourmet.domain.exceptions.UsuarioNaoEncontradoException;
 import org.springframework.stereotype.Service;
+
+import static java.util.Objects.isNull;
 
 @Service
 public class TrocarSenhaUsuarioService implements TrocarSenhaUsuarioUseCase {
@@ -15,6 +17,10 @@ public class TrocarSenhaUsuarioService implements TrocarSenhaUsuarioUseCase {
     public void trocarSenha(TrocarSenhaUsuarioCommand trocarSenhaUsuarioDTO, String id) {
 
         var usuario = usuarioRepository.findById(id);
+
+        if (isNull(usuario))
+            throw new UsuarioNaoEncontradoException();
+
         usuario.alterarSenha(trocarSenhaUsuarioDTO.senha());
 
         var update = usuarioRepository.atualizarSenha(usuario, id);
