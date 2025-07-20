@@ -8,6 +8,8 @@ import br.com.ourogourmet.domain.exceptions.UsuarioNaoEncontradoException;
 import br.com.ourogourmet.domain.exceptions.UsuarioValidacaoException;
 import org.springframework.stereotype.Service;
 
+import static java.util.Objects.nonNull;
+
 @Service
 public class AlterarUsuarioService implements AlterarUsuarioUseCase {
 
@@ -31,7 +33,7 @@ public class AlterarUsuarioService implements AlterarUsuarioUseCase {
     }
 
     private void validarAlteracoes(Usuario usuarioAtual, AlterarUsuarioCommand novoUsuario) {
-        if (!usuarioAtual.getLogin().equals(novoUsuario.login())) {
+        if (nonNull(usuarioAtual) && !usuarioAtual.getLogin().equals(novoUsuario.login())) {
             throw new UsuarioDuplicadoException("do login");
         }
 

@@ -12,7 +12,6 @@ import br.com.ourogourmet.domain.usecases.AlterarRestauranteUsuarioUseCase.Alter
 import br.com.ourogourmet.domain.usecases.CriarRestauranteUseCase.CriarRestauranteCommand;
 import br.com.ourogourmet.infrastructure.adapter.repository.RestauranteEntityRepository;
 import br.com.ourogourmet.infrastructure.repository.RestauranteRepository;
-import br.com.ourogourmet.infrastructure.repository.UsuarioRepositoryImp;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -94,11 +93,11 @@ public class RestauranteController {
         return ResponseEntity.status(status.value()).build();
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}/usuario")
     public ResponseEntity<Void> alterarRestauranteUsuario(
             @PathVariable("id") Long id,
             @RequestBody AlterarUsuarioRestauranteDTO usuario){
-        
+
         var cmd = new AlterarRestauranteUsuarioCommand(id,usuario.id());
 
         this.alterarRestauranteUsuarioUseCase.execute(cmd,new RestauranteEntityRepository(restauranteRepository) );

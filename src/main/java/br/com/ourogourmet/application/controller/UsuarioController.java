@@ -1,19 +1,18 @@
 package br.com.ourogourmet.application.controller;
 
+import br.com.ourogourmet.application.controller.dtos.AlterarUsuarioDTO;
+import br.com.ourogourmet.application.controller.dtos.CriarUsuarioDTO;
+import br.com.ourogourmet.application.controller.dtos.TrocarSenhaUsuarioDTO;
+import br.com.ourogourmet.application.controller.dtos.ValidarLoginUsuarioDTO;
+import br.com.ourogourmet.domain.entities.Usuario;
+import br.com.ourogourmet.domain.exceptions.UsuarioCamposInvalidosException;
 import br.com.ourogourmet.domain.usecases.*;
 import br.com.ourogourmet.domain.usecases.AlterarUsuarioUseCase.AlterarUsuarioCommand;
 import br.com.ourogourmet.domain.usecases.CriarUsuarioUseCase.CriarUsuarioCommand;
 import br.com.ourogourmet.domain.usecases.TrocarSenhaUsuarioUseCase.TrocarSenhaUsuarioCommand;
 import br.com.ourogourmet.domain.usecases.ValidarLoginUsuarioUseCase.ValidarLoginUsuarioCommand;
-import br.com.ourogourmet.domain.entities.Usuario;
-import br.com.ourogourmet.domain.exceptions.UsuarioCamposInvalidosException;
-import br.com.ourogourmet.application.controller.dtos.AlterarUsuarioDTO;
-import br.com.ourogourmet.application.controller.dtos.CriarUsuarioDTO;
-import br.com.ourogourmet.application.controller.dtos.TrocarSenhaUsuarioDTO;
-import br.com.ourogourmet.application.controller.dtos.ValidarLoginUsuarioDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
 @RestController
 @RequestMapping("/usuarios")
 @Tag(name="Usuários", description = "Cadastro de usuarios")
