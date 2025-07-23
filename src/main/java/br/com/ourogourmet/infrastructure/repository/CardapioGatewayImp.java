@@ -4,17 +4,11 @@ import br.com.ourogourmet.domain.entities.Cardapio;
 import br.com.ourogourmet.domain.exceptions.CardapioNaoEncontradoException;
 import br.com.ourogourmet.domain.gateway.CardapioGateway;
 import br.com.ourogourmet.infrastructure.model.CardapioEntity;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Profile;
-import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-@Profile("!test")
 public class CardapioGatewayImp implements CardapioGateway {
 
     private final CardapioJpaRepository cardapioJpaRepository;
@@ -24,33 +18,43 @@ public class CardapioGatewayImp implements CardapioGateway {
     }
 
     @Override
-    public Cardapio buscarPorId(String id) {
+    public Cardapio getCardapioById(Long id) {
         CardapioEntity cardapioEntity = cardapioJpaRepository.findById(id)
-                .orElseThrow(() -> new CardapioNaoEncontradoException());
-        return Cardapio.create(cardapioEntity.getNome(),
-                cardapioEntity.getDescricao(),
-                cardapioEntity.getPreco(),
-                cardapioEntity.getConsumoLocal(),
-                cardapioEntity.getFoto());
+                .orElseThrow(CardapioNaoEncontradoException::new);
+        return cardapioEntity.toDomain();
     }
 
     @Override
-    public List<Cardapio> buscarTodos(int size, int offset) {
-        return List.of();
+    public List<Cardapio> getAllCardapio(int size, int offset) {
+        List<CardapioEntity> cardapioEntities = cardapioJpaRepository.findAll();
+        return cardapioEntities.stream()
+                .map(CardapioEntity::toDomain)
+                .toList();
     }
 
     @Override
-    public Integer salvar(Cardapio cardapio) {
-        return 0;
+    public Cardapio criarCardapio(Cardapio cardapio) {
+        var cardapioSalvo = cardapioJpaRepository.save(new CardapioEntity(cardapio));
+        return cardapioSalvo.toDomain();
     }
 
     @Override
-    public Integer atualizar(Cardapio cardapio, String id) {
-        return 0;
+    public Cardapio atualizarCardapio(Cardapio cardapio, Long id) {
+        CardapioEntity cardapioEntity = cardapioJpaRepository.findById(id)
+                .orElseThrow(CardapioNaoEncontradoException::new);
+        cardapioEntity.setNome(cardapio.getNome());
+        cardapioEntity.setDescricao(cardapio.getDescricao());
+        cardapioEntity.setConsumoLocal(cardapio.getConsumoLocal());
+        cardapioEntity.setPreco(cardapio.getPreco());
+        cardapioEntity.setFoto(cardapio.getFoto());
+        return cardapioEntity.toDomain();
     }
 
     @Override
-    public Integer deletar(String id) {
-        return 0;
+    public void deletarCardapio(Long id) {
+        if (!cardapioJpaRepository.existsById(id)) {
+            throw new CardapioNaoEncontradoException();
+        }
+        cardapioJpaRepository.deleteById(id);
     }
 }

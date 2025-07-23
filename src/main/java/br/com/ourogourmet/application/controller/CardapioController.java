@@ -50,7 +50,7 @@ public class CardapioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Cardapio>> findAll(
+    public ResponseEntity<List<Cardapio>> findAllCardapio(
             @RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "size", defaultValue = "10") int size) {
         var cardapio = this.getAllCardapios.findAll(page, size);
@@ -58,14 +58,14 @@ public class CardapioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cardapio> findById(
-            @PathVariable("id") String id) {
-        var cardapio = this.getGetByIdCardapio().findById(id);
+    public ResponseEntity<Cardapio> findCardapioById(
+            @PathVariable("id") Long id) {
+        var cardapio = this.getByIdCardapio.findById(id);
         return ResponseEntity.ok(cardapio);
     }
 
     @PostMapping
-    public ResponseEntity<Void> save(@RequestBody CriarCardapioDTO cardapioDTO) {
+    public ResponseEntity<Void> criarCardapio(@RequestBody CriarCardapioDTO cardapioDTO) {
         var erros = this.validator.validateObject(cardapioDTO)
                 .getAllErrors()
                 .stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toSet());
@@ -78,14 +78,13 @@ public class CardapioController {
                 cardapioDTO.preco(),
                 cardapioDTO.foto(),
                 cardapioDTO.cosumoLocal());
-         Cardapio.incluir(cmd);
-
-        return ResponseEntity.status(200).build();
+        criarCardapio.criar(cmd);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(
-            @PathVariable("id") String id,
+    public ResponseEntity<Void> updateCardapio(
+            @PathVariable("id") Long id,
             @RequestBody AlterarCardapioDTO cardapioDTO) {
 
         var erros = this.validator.validateObject(cardapioDTO)
@@ -95,7 +94,7 @@ public class CardapioController {
         if (!erros.isEmpty())
             throw new CardapioCamposInvalidosException(erros);
 
-        this.alterarCardapio.update(new AlterarCardapioComand(cardapioDTO.nome(),
+        this.alterarCardapio.alterar(new AlterarCardapioComand(cardapioDTO.nome(),
                 cardapioDTO.descricao(),
                 cardapioDTO.preco(),
                 cardapioDTO.foto(),
@@ -106,8 +105,8 @@ public class CardapioController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(
-            @PathVariable("id") String id) {
-        this.deletarCardapio.delete(id);
+            @PathVariable("id") Long id) {
+        this.deletarCardapio.deletar(id);
         return ResponseEntity.ok().build();
     }
 

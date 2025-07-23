@@ -5,13 +5,11 @@ import br.com.ourogourmet.domain.usecases.CriarCardapioUseCase.CriarCardapioComm
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.UUID;
-
 @AllArgsConstructor
 @Getter
 public class Cardapio {
 
-    private String id;
+    private Long id;
     private String nome;
     private String descricao;
     private Double preco;
@@ -49,17 +47,14 @@ public class Cardapio {
 
     public static Cardapio incluir(CriarCardapioCommand criarCardapioDTO) {
 
-        var cardapio = create(criarCardapioDTO.nome(),
+        return create(criarCardapioDTO.nome(),
                 criarCardapioDTO.descricao(),
                 criarCardapioDTO.preco(),
                 criarCardapioDTO.cosumoLocal(),
                 criarCardapioDTO.foto());
-
-        cardapio.setId(String.valueOf(UUID.randomUUID()));
-        return cardapio;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
