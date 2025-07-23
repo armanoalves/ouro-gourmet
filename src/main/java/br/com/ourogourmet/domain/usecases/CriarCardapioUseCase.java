@@ -2,7 +2,7 @@ package br.com.ourogourmet.domain.usecases;
 
 public interface CriarCardapioUseCase {
 
-    void save(CriarCardapioCommand cardapio);
+    void criar(CriarCardapioCommand cardapio);
 
     record CriarCardapioCommand(
             String nome,

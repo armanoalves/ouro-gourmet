@@ -16,13 +16,10 @@ public class CriarCardapioService implements CriarCardapioUseCase {
         this.cardapioRepository = cardapioRepository;
     }
 
-    public void save(CriarCardapioCommand cardapioDTO) {
-
+    public void criar(CriarCardapioCommand cardapioDTO) {
         var incluirCardapio = Cardapio.incluir(cardapioDTO);
-
-        var save = this.cardapioRepository.salvar(incluirCardapio);
-
-        if (save != 1) {
+        var save = this.cardapioRepository.criarCardapio(incluirCardapio);
+        if (save == null) {
             throw new CardapioCriacaoFalhaException("Erro ao salvar Cardapio");
         }
     }

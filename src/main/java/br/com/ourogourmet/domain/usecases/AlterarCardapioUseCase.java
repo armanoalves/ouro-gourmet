@@ -2,7 +2,7 @@ package br.com.ourogourmet.domain.usecases;
 
 
 public interface AlterarCardapioUseCase {
-    void update(AlterarCardapioComand cardapio, String id);
+    void alterar(AlterarCardapioComand cardapio, Long id);
 
     record AlterarCardapioComand(
             String nome,

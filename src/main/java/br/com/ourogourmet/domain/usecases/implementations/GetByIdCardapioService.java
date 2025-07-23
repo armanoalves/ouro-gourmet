@@ -15,7 +15,7 @@ public class GetByIdCardapioService implements GetByIdCardapioUseCase {
     }
 
     @Override
-    public Cardapio findById(String id){
-        return this.cardapioRepository.buscarPorId(id);
+    public Cardapio findById(Long id){
+        return this.cardapioRepository.getCardapioById(id);
     }
 }

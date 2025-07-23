@@ -19,7 +19,6 @@ public class GetAllCardapioService implements GetAllCardapioUseCase {
     @Override
     public List<Cardapio> findAll(int page, int size){
         int offset = (page-1) * size;
-
-        return this.cardapioRepository.buscarTodos(size,offset);
+        return this.cardapioRepository.getAllCardapio(size,offset);
     }
 }
