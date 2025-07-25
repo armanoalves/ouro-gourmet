@@ -7,7 +7,7 @@ public interface AlterarTipoUsuarioUseCase {
     void execute(AlterarTipoUsuarioCommand tipoUsuarioCommand);
 
     record AlterarTipoUsuarioCommand(
-            Long Id,
+            Long id,
             TipoUsuarioEnum tipo){
     }
 }
