@@ -1,0 +1,1 @@
+DELETE FROM tipo_usuario;
