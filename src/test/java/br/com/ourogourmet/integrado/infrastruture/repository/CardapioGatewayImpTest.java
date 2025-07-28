@@ -1,7 +1,8 @@
-package br.com.ourogourmet.integrado.repository;
+package br.com.ourogourmet.integrado.infrastruture.repository;
 
 import br.com.ourogourmet.domain.entities.Cardapio;
 import br.com.ourogourmet.domain.exceptions.CardapioNaoEncontradoException;
+import br.com.ourogourmet.domain.usecases.AlterarCardapioUseCase;
 import br.com.ourogourmet.infrastructure.repository.CardapioGatewayImp;
 import br.com.ourogourmet.infrastructure.repository.CardapioJpaRepository;
 import org.junit.jupiter.api.Test;
@@ -78,16 +79,12 @@ class CardapioGatewayImpTest {
 
     @Test
     void deveAtualizarCardapioComSucesso() {
-
-        Long id = 98L;
-        Cardapio cardapio = Cardapio.create("X-BURGUER ATUALIZADO", "carne com queijo e pão atualizado", 30.0, false, "foto_atualizada.jpg");
-
-        Cardapio cardapioAtualizado = cardapioGatewayImp.atualizarCardapio(cardapio, id);
-
+        Cardapio alterar = Cardapio.alterar(new AlterarCardapioUseCase.AlterarCardapioComand(1L, "X-BURGUER ATUALIZADO", "carne com queijo e pão atualizado", 30.0, "foto_atualizada.jpg",false));
+        Cardapio cardapioAtualizado = cardapioGatewayImp.atualizarCardapio(alterar);
         assertThat(cardapioAtualizado)
                 .isNotNull()
                 .isInstanceOf(Cardapio.class);
-        assertThat(cardapioAtualizado.getId()).isEqualTo(id);
+        assertThat(cardapioAtualizado.getId()).isEqualTo(1L);
         assertThat(cardapioAtualizado.getNome()).isEqualTo("X-BURGUER ATUALIZADO");
         assertThat(cardapioAtualizado.getDescricao()).isEqualTo("carne com queijo e pão atualizado");
         assertThat(cardapioAtualizado.getPreco()).isEqualTo(30.0);

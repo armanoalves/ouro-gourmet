@@ -39,14 +39,8 @@ public class CardapioGatewayImp implements CardapioGateway {
     }
 
     @Override
-    public Cardapio atualizarCardapio(Cardapio cardapio, Long id) {
-        CardapioEntity cardapioEntity = cardapioJpaRepository.findById(id)
-                .orElseThrow(CardapioNaoEncontradoException::new);
-        cardapioEntity.setNome(cardapio.getNome());
-        cardapioEntity.setDescricao(cardapio.getDescricao());
-        cardapioEntity.setConsumoLocal(cardapio.getConsumoLocal());
-        cardapioEntity.setPreco(cardapio.getPreco());
-        cardapioEntity.setFoto(cardapio.getFoto());
+    public Cardapio atualizarCardapio(Cardapio cardapio) {
+        CardapioEntity cardapioEntity = cardapioJpaRepository.save(new CardapioEntity(cardapio));
         return cardapioEntity.toDomain();
     }
 

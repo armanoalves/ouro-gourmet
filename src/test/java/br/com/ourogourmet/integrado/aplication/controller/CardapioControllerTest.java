@@ -1,4 +1,4 @@
-package br.com.ourogourmet.integrado.controller;
+package br.com.ourogourmet.integrado.aplication.controller;
 
 import br.com.ourogourmet.application.controller.CardapioController;
 import br.com.ourogourmet.application.response.GlobalExceptionHandle;
