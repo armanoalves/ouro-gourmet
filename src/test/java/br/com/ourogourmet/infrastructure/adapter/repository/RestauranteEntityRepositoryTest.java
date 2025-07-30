@@ -3,6 +3,7 @@ package br.com.ourogourmet.infrastructure.adapter.repository;
 import br.com.ourogourmet.domain.entities.Restaurante;
 import br.com.ourogourmet.domain.entities.Usuario;
 import br.com.ourogourmet.infrastructure.model.RestauranteEntity;
+import br.com.ourogourmet.infrastructure.repository.RestauranteEntityRepository;
 import br.com.ourogourmet.infrastructure.repository.RestauranteRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

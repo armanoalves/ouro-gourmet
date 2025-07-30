@@ -1,10 +1,9 @@
-package br.com.ourogourmet.infrastructure.adapter.repository;
+package br.com.ourogourmet.infrastructure.repository;
 
 import br.com.ourogourmet.domain.entities.Restaurante;
 import br.com.ourogourmet.domain.gateway.RestauranteGateway;
 import br.com.ourogourmet.infrastructure.model.RestauranteEntity;
 import br.com.ourogourmet.infrastructure.model.UsuarioEntity;
-import br.com.ourogourmet.infrastructure.repository.RestauranteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 

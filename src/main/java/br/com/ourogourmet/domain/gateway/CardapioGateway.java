@@ -9,6 +9,6 @@ public interface CardapioGateway {
     Cardapio getCardapioById(Long id);
     List<Cardapio> getAllCardapio(int size, int offset);
     Cardapio criarCardapio(Cardapio cardapio);
-    Cardapio atualizarCardapio(Cardapio cardapio, Long id);
+    Cardapio atualizarCardapio(Cardapio cardapio);
     void deletarCardapio(Long id);
 }

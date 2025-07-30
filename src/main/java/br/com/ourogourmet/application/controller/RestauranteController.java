@@ -10,7 +10,7 @@ import br.com.ourogourmet.domain.usecases.*;
 import br.com.ourogourmet.domain.usecases.AlterarRestauranteUseCase.AlterarRestauranteCommand;
 import br.com.ourogourmet.domain.usecases.AlterarRestauranteUsuarioUseCase.AlterarRestauranteUsuarioCommand;
 import br.com.ourogourmet.domain.usecases.CriarRestauranteUseCase.CriarRestauranteCommand;
-import br.com.ourogourmet.infrastructure.adapter.repository.RestauranteEntityRepository;
+import br.com.ourogourmet.infrastructure.repository.RestauranteEntityRepository;
 import br.com.ourogourmet.infrastructure.repository.RestauranteRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;

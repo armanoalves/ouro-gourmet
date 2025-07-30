@@ -94,11 +94,15 @@ public class CardapioController {
         if (!erros.isEmpty())
             throw new CardapioCamposInvalidosException(erros);
 
-        this.alterarCardapio.alterar(new AlterarCardapioComand(cardapioDTO.nome(),
+        AlterarCardapioComand alterarCardapioComand = new AlterarCardapioComand(id,
+                cardapioDTO.nome(),
                 cardapioDTO.descricao(),
                 cardapioDTO.preco(),
                 cardapioDTO.foto(),
-                cardapioDTO.cosumoLocal()), id);
+                cardapioDTO.cosumoLocal());
+
+        this.alterarCardapio.alterar(alterarCardapioComand);
+
         var status = HttpStatus.NO_CONTENT;
         return ResponseEntity.status(status.value()).build();
     }
