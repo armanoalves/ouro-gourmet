@@ -1,0 +1,6 @@
+CREATE TABLE tipo_usuario
+(
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    tipo VARCHAR(50) NOT NULL UNIQUE,
+    CONSTRAINT tipo_usuario_pkey PRIMARY KEY (id)
+);

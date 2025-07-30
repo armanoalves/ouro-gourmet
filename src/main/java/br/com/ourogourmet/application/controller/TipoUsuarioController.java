@@ -58,7 +58,7 @@ public class TipoUsuarioController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TipoUsuario> findById(
-            @PathVariable("Id") String id){
+            @PathVariable("id") String id){
 
         var tipoUsuario = this.getByIdTipoUsuario.findById(id);
         return ResponseEntity.ok(tipoUsuario);

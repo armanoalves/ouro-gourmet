@@ -1,13 +1,13 @@
 package br.com.ourogourmet.infrastructure.model;
 
+import br.com.ourogourmet.domain.entities.TipoUsuario;
 import br.com.ourogourmet.domain.entities.Usuario;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -24,6 +24,10 @@ public class UsuarioEntity {
     private String senha;
     private LocalDate dataAlteracao;
     private String endereco;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tipo_usuario_id", nullable = false)
+    private TipoUsuarioEntity tipoUsuario;
 
     protected UsuarioEntity(){}
 
@@ -48,5 +52,10 @@ public class UsuarioEntity {
                 this.endereco);
         usuario.setId(this.id);
         return usuario;
+    }
+
+    @PreUpdate
+    void prePersist() {
+        this.dataAlteracao = LocalDate.now();
     }
 }

@@ -14,4 +14,5 @@ public interface UsuarioGateway {
     Integer atualizarSenha(Usuario usuario, String id);
     Usuario findByLogin(String login);
     boolean existsByEmail(String email);
+
 }

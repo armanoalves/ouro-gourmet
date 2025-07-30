@@ -1,0 +1,3 @@
+INSERT INTO usuario (id, nome, email, login, ativo, senha, data_alteracao, endereco, tipo_usuario_id)
+VALUES  ('20f8f6aa-6ff6-4701-8c8e-49000fa471d3', 'Carlos Silva', 'carlos@email.com', 'carlos_silva', TRUE, 'senha123', '2025-07-29', 'Rua A, 123', 1),
+        ('2fede0f9-c6c0-4533-8bb2-2ae4d702fc1g', 'Mariana Souza', 'mariana@email.com', 'mariana_souza', TRUE, 'senha456', '2025-07-29', 'Av. B, 456', 2);

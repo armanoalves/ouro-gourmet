@@ -40,7 +40,7 @@ public class UsuarioRepositoryImp implements UsuarioGateway {
     @Override
     public Integer save(Usuario usuario) {
         return this.jdbcClient
-                .sql("INSERT into usuario (id, nome, endereco, senha, email, login, ativo) VALUES (:id, :nome,:endereco,:senha, :email, :login, :ativo)")
+                .sql("INSERT into usuario (id, nome, endereco, senha, email, login, ativo, tipo_usuario_id) VALUES (:id, :nome,:endereco,:senha, :email, :login, :ativo, :tipo_usuario_id)")
                 .param("id",usuario.getId())
                 .param("email",usuario.getEmail())
                 .param("login",usuario.getLogin())
@@ -48,6 +48,7 @@ public class UsuarioRepositoryImp implements UsuarioGateway {
                 .param("nome",usuario.getNome())
                 .param("endereco",usuario.getEndereco())
                 .param("senha",usuario.getSenha())
+                .param("tipo_usuario_id", usuario.getTipoUsuarioId())
                 .update();
     }
 

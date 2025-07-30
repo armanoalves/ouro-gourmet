@@ -72,7 +72,9 @@ public class UsuarioController {
                 usuario.senha(),
                 usuario.email(),
                 usuario.login(),
-                usuario.ativo()) );
+                usuario.ativo(),
+                usuario.tipoUsuarioId()
+        ));
         return ResponseEntity.status(200).build();
     }
 

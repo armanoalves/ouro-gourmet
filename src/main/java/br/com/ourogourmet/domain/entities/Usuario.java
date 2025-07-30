@@ -21,10 +21,11 @@ public class Usuario {
     private String senha;
     private LocalDate dataAlteracao;
     private String endereco;
+    private TipoUsuario tipoUsuarioId;
 
     protected Usuario(){}
 
-    public static Usuario create(String nome,String email, String login, Boolean ativo, String senha, LocalDate dataAlteracao, String endereco){
+    public static Usuario create(String nome, String email, String login, Boolean ativo, String senha, LocalDate dataAlteracao, String endereco){
 
         var usuario = new Usuario();
 
@@ -99,5 +100,9 @@ public class Usuario {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public void setTipoUsuarioId(TipoUsuario tipoUsuarioId) {
+        this.tipoUsuarioId = tipoUsuarioId;
     }
 }
