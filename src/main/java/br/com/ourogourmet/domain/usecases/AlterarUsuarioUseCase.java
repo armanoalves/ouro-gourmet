@@ -9,7 +9,8 @@ public interface AlterarUsuarioUseCase{
             String endereco,
             String email,
             String login,
-            Boolean ativo) {
+            Boolean ativo,
+            Long tipoUsuarioId) {
     }
 }
 

@@ -27,7 +27,7 @@ public class UsuarioEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tipo_usuario_id", nullable = false)
-    private TipoUsuarioEntity tipoUsuario;
+    private TipoUsuarioEntity tipoUsuarioId;
 
     protected UsuarioEntity(){}
 
@@ -49,7 +49,8 @@ public class UsuarioEntity {
                 this.ativo,
                 this.senha,
                 this.dataAlteracao,
-                this.endereco);
+                this.endereco,
+                this.tipoUsuarioId.getId());
         usuario.setId(this.id);
         return usuario;
     }

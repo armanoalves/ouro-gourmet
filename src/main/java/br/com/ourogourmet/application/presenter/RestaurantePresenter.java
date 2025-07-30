@@ -18,7 +18,8 @@ public class RestaurantePresenter implements Presenter<Restaurante,RestauranteRe
                         usuario.getEmail(),
                         usuario.getLogin(),
                         usuario.getAtivo(),
-                        usuario.getEndereco()))
+                        usuario.getEndereco(),
+                        usuario.getTipoUsuarioId()))
                 .orElse(null);
 
         return new RestauranteResponse(response.getId(),

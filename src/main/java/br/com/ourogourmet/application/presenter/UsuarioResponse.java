@@ -12,4 +12,5 @@ public class UsuarioResponse {
     private String login;
     private Boolean ativo;
     private String endereco;
+    private Long tipoUsuarioId;
 }

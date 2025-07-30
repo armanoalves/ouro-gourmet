@@ -39,7 +39,8 @@ class CriarUsuarioServiceTest {
                 "senha123",
                 "joao@email.com",
                 "joaosilva",
-                true);
+                true,
+                1L);
 
         when(usuarioGateway.findAll(anyInt(), anyInt())).thenReturn(Collections.emptyList());
         when(usuarioGateway.save(any(Usuario.class))).thenReturn(1);
@@ -64,9 +65,10 @@ class CriarUsuarioServiceTest {
                 "senha123",
                 "joao@email.com",
                 "joaosilva",
-                true);
+                true,
+                1L);
 
-        Usuario existente = Usuario.create("João Silva","joao@email.com","login",true,"senha",LocalDate.now(),"Rua da Glória, 355");
+        Usuario existente = Usuario.create("João Silva","joao@email.com","login",true,"senha",LocalDate.now(),"Rua da Glória, 355", 1L);
         existente.setEmail("joao@email.com");
 
         when(usuarioGateway.findAll(anyInt(), anyInt())).thenReturn(List.of(existente));
@@ -90,7 +92,8 @@ class CriarUsuarioServiceTest {
                 "senha123",
                 "joao@email.com",
                 "joaosilva",
-                true);
+                true,
+                1L);
 
         when(usuarioGateway.findAll(anyInt(), anyInt())).thenReturn(Collections.emptyList());
         when(usuarioGateway.save(any(Usuario.class))).thenReturn(0);
@@ -113,7 +116,8 @@ class CriarUsuarioServiceTest {
                 "outrasenha",
                 "maria@email.com",
                 "mariasouza",
-                false);
+                false,
+                1L);
 
         when(usuarioGateway.findAll(anyInt(), anyInt())).thenReturn(Collections.emptyList());
         when(usuarioGateway.save(any(Usuario.class))).thenReturn(1);
@@ -140,9 +144,10 @@ class CriarUsuarioServiceTest {
                 "senha123",
                 "JOAO@email.com", // email em maiúsculas
                 "joaosilva",
-                true);
+                true,
+                1L);
 
-        Usuario existente = Usuario.create("João Silva","joao@email.com","login",true,"senha",LocalDate.now(),"Rua da Glória, 355");
+        Usuario existente = Usuario.create("João Silva","joao@email.com","login",true,"senha",LocalDate.now(),"Rua da Glória, 355", 1L);
         existente.setEmail("joao@email.com"); // email em minúsculas
 
         when(usuarioGateway.findAll(anyInt(), anyInt())).thenReturn(List.of(existente));

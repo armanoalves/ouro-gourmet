@@ -26,7 +26,7 @@ class GetByIdTipoUsuarioServiceTest {
     void findById_ComIdValido_DeveRetornarTipoUsuario() {
         // Arrange
         String id = "1";
-        TipoUsuario tipoUsuario = TipoUsuario.create(TipoUsuarioEnum.DONO);
+        TipoUsuario tipoUsuario = TipoUsuario.create("DONO");
         tipoUsuario.setId(Long.parseLong(id));
 
         when(tipoUsuarioGateway.findById(id)).thenReturn(tipoUsuario);
@@ -53,7 +53,7 @@ class GetByIdTipoUsuarioServiceTest {
     void findById_DeveChamarGatewaySomenteUmaVez() {
         // Arrange
         String id = "10";
-        TipoUsuario tipoUsuario = TipoUsuario.create(TipoUsuarioEnum.CLIENTE);
+        TipoUsuario tipoUsuario = TipoUsuario.create("CLIENTE");
         when(tipoUsuarioGateway.findById(id)).thenReturn(tipoUsuario);
 
         // Act
@@ -68,7 +68,7 @@ class GetByIdTipoUsuarioServiceTest {
     void findById_DeveRetornarTipoCorreto() {
         // Arrange
         String id = "2";
-        TipoUsuario tipoUsuario = TipoUsuario.create(TipoUsuarioEnum.CLIENTE);
+        TipoUsuario tipoUsuario = TipoUsuario.create("CLIENTE");
         tipoUsuario.setId(2L);
 
         when(tipoUsuarioGateway.findById(id)).thenReturn(tipoUsuario);

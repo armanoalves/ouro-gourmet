@@ -20,5 +20,8 @@ public record AlterarUsuarioDTO(
         String login,
 
         @NotNull
-        Boolean ativo) {
+        Boolean ativo,
+
+        @NotNull
+        Long tipoUsuarioId) {
 }

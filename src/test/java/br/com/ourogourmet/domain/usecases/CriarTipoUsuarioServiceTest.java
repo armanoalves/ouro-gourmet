@@ -26,7 +26,7 @@ class CriarTipoUsuarioServiceTest {
     @Test
     void execute_DeveCriarTipoUsuarioERetornarId() {
         // Arrange
-        var tipoEnum = TipoUsuarioEnum.DONO;
+        var tipoEnum = "DONO";
         var command = new CriarTipoUsuarioUseCase.CriarTipoUsuarioCommand(tipoEnum);
 
         when(tipoUsuarioGateway.incluir(any())).thenReturn(1L);

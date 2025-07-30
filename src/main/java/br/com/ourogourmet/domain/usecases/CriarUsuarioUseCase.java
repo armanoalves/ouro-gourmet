@@ -12,6 +12,6 @@ public interface CriarUsuarioUseCase {
                 String email,
                 String login,
                 Boolean ativo,
-                TipoUsuario tipoUsuario) {
+                Long tipoUsuarioId) {
         }
 }

@@ -38,7 +38,8 @@ class AlterarUsuarioServiceTest {
                 "Rua Nova, 456",
                 "joao.novo@email.com",
                 "joaosilva", // login mantido igual
-                true);
+                true,
+                1L);
 
         Usuario usuarioExistente = Usuario.create(
                 "João Silva",
@@ -47,7 +48,8 @@ class AlterarUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua Antiga, 123");
+                "Rua Antiga, 123",
+                1L);
 
         when(usuarioGateway.findById(id)).thenReturn(usuarioExistente);
         when(usuarioGateway.existsByEmail(command.email())).thenReturn(false);
@@ -62,7 +64,9 @@ class AlterarUsuarioServiceTest {
                         usuario.getEndereco().equals("Rua Nova, 456") &&
                         usuario.getEmail().equals("joao.novo@email.com") &&
                         usuario.getLogin().equals("joaosilva") &&
+                        usuario.getTipoUsuarioId().equals(1L) &&
                         usuario.getAtivo()
+
         ), eq(id));
     }
 
@@ -75,7 +79,8 @@ class AlterarUsuarioServiceTest {
                 "Endereço Qualquer",
                 "email@qualquer.com",
                 "loginqualquer",
-                true);
+                true,
+                1L);
 
         when(usuarioGateway.findById(id)).thenReturn(null);
 
@@ -94,7 +99,8 @@ class AlterarUsuarioServiceTest {
                 "Rua A, 123",
                 "email.existente@teste.com", // email que já existe
                 "joaosilva",
-                true);
+                true,
+                1L);
 
         Usuario usuarioExistente = Usuario.create(
                 "João Silva",
@@ -103,7 +109,8 @@ class AlterarUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 123");
+                "Rua A, 123",
+                1L);
 
         when(usuarioGateway.findById(id)).thenReturn(usuarioExistente);
         when(usuarioGateway.existsByEmail(command.email())).thenReturn(true);
@@ -125,7 +132,8 @@ class AlterarUsuarioServiceTest {
                 "Rua A, 123",
                 "joao@email.com",
                 "novologin", // login diferente do existente
-                true);
+                true,
+                1L);
 
         Usuario usuarioExistente = Usuario.create(
                 "João Silva",
@@ -134,7 +142,8 @@ class AlterarUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 123");
+                "Rua A, 123",
+                1L);
 
         when(usuarioGateway.findById(id)).thenReturn(usuarioExistente);
 
@@ -155,7 +164,8 @@ class AlterarUsuarioServiceTest {
                 "Rua A, 123",
                 "joao@email.com",
                 "joaosilva",
-                false); // ativo = false
+                false,
+                1L); // ativo = false
 
         Usuario usuarioExistente = Usuario.create(
                 "João Silva",
@@ -164,7 +174,8 @@ class AlterarUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 123");
+                "Rua A, 123",
+                1L);
 
         when(usuarioGateway.findById(id)).thenReturn(usuarioExistente);
 
@@ -185,7 +196,8 @@ class AlterarUsuarioServiceTest {
                 "Rua A, 123",
                 "joao@email.com",
                 "joaosilva",
-                true);
+                true,
+                1L);
 
         Usuario usuarioExistente = Usuario.create(
                 "João Silva",
@@ -194,7 +206,8 @@ class AlterarUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 123");
+                "Rua A, 123",
+                1L);
 
         when(usuarioGateway.findById(id)).thenReturn(usuarioExistente);
         when(usuarioGateway.existsByEmail(command.email())).thenReturn(false);
@@ -215,7 +228,8 @@ class AlterarUsuarioServiceTest {
                 "Rua Nova, 456",
                 "joao.novo@email.com",
                 "joaosilva", // mesmo login
-                true);
+                true,
+                1L);
 
         Usuario usuarioExistente = Usuario.create(
                 "João Silva",
@@ -224,7 +238,8 @@ class AlterarUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua Antiga, 123");
+                "Rua Antiga, 123",
+                1L);
 
         when(usuarioGateway.findById(id)).thenReturn(usuarioExistente);
         when(usuarioGateway.existsByEmail(command.email())).thenReturn(false);

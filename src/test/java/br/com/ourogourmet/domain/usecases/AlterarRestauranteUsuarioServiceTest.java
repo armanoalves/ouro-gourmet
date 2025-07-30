@@ -51,7 +51,8 @@ class AlterarRestauranteUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 123");
+                "Rua A, 123",
+                1L);
         usuario.setId(usuarioId);
 
         when(restauranteGateway.buscarPorId(restauranteId)).thenReturn(Optional.of(restaurante));
@@ -148,7 +149,8 @@ class AlterarRestauranteUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 123");
+                "Rua A, 123",
+                1L);
         usuario.setId(usuarioId);
 
         when(restauranteGateway.buscarPorId(restauranteId)).thenReturn(Optional.of(restaurante));

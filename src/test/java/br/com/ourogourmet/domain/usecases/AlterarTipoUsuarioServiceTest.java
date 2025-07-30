@@ -26,7 +26,7 @@ class AlterarTipoUsuarioServiceTest {
     void execute_DeveChamarMetodoAlterarDoGateway() {
         // Arrange
         Long id = 1L;
-        TipoUsuarioEnum novoTipo = TipoUsuarioEnum.valueOf("DONO");
+        String novoTipo = "DONO";
 
         AlterarTipoUsuarioCommand command = new AlterarTipoUsuarioCommand(id, novoTipo);
 

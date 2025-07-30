@@ -1,4 +1,4 @@
-package br.com.ourogourmet.integrado.repository;
+package br.com.ourogourmet.integrado.infrastruture.repository;
 
 import br.com.ourogourmet.domain.entities.TipoUsuario;
 import br.com.ourogourmet.domain.entities.enums.TipoUsuarioEnum;
@@ -62,7 +62,7 @@ class TipoUsuarioGatewayImplTest {
 
     @Test
     void deveIncluirTipoUsuarioComSucesso() {
-        TipoUsuario tipoUsuario = TipoUsuario.create(TipoUsuarioEnum.CLIENTE);
+        TipoUsuario tipoUsuario = TipoUsuario.create("CLIENTE");
 
         Long idSalvo = tipoUsuarioGateway.incluir(tipoUsuario);
 
@@ -74,7 +74,7 @@ class TipoUsuarioGatewayImplTest {
     void deveAlterarTipoUsuarioComSucesso() {
         Long id = 102L;
         AlterarTipoUsuarioUseCase.AlterarTipoUsuarioCommand command =
-                new AlterarTipoUsuarioUseCase.AlterarTipoUsuarioCommand(id, TipoUsuarioEnum.CLIENTE);
+                new AlterarTipoUsuarioUseCase.AlterarTipoUsuarioCommand(id, "CLIENTE");
 
         tipoUsuarioGateway.alterar(command);
 

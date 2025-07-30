@@ -1,10 +1,8 @@
 package br.com.ourogourmet.application.controller.dtos;
 
-import br.com.ourogourmet.domain.entities.TipoUsuario;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import java.time.LocalDate;
 
 public record CriarUsuarioDTO(
         @NotBlank(message = "O campo nome é obrigatório.")
@@ -26,7 +24,7 @@ public record CriarUsuarioDTO(
         @NotNull(message = "O campo ativo é obrigatório.")
         Boolean ativo,
 
-        @NotNull(message = "O campo tipoUsuarioId é obrigatório.")
-        TipoUsuario tipoUsuarioId
+        @NotNull
+        Long tipoUsuarioId
 ) {
 }

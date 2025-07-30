@@ -62,7 +62,8 @@ class RestauranteEntityRepositoryTest {
                         true,
                         "senha123",
                         LocalDate.now(),
-                        "Rua A, 345"));
+                        "Rua A, 345",
+                        1L));
 
         // Arrange
         Long id = 1L;
@@ -106,7 +107,8 @@ class RestauranteEntityRepositoryTest {
                         true,
                         "senha123",
                         LocalDate.now(),
-                        "Rua A, 345"));
+                        "Rua A, 345",
+                        1L));
         RestauranteEntity entity = new RestauranteEntity(restaurante);
 
         when(restauranteRepository.findByNome(nome)).thenReturn(Optional.of(entity));
@@ -135,7 +137,8 @@ class RestauranteEntityRepositoryTest {
                         true,
                         "senha123",
                         LocalDate.now(),
-                        "Rua A, 345"));
+                        "Rua A, 345",
+                        1L));
 
         RestauranteEntity entity1 = new RestauranteEntity(restaurante1);
 
@@ -147,7 +150,8 @@ class RestauranteEntityRepositoryTest {
                         true,
                         "senha123",
                         LocalDate.now(),
-                        "Rua A, 345"));
+                        "Rua A, 345",
+                        1L));
 
         RestauranteEntity entity2 = new RestauranteEntity(restaurante2);
         Page<RestauranteEntity> pageResult = new PageImpl<>(List.of(entity1, entity2));
@@ -202,7 +206,8 @@ class RestauranteEntityRepositoryTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
         usuario.setId("user-123");
 
         Restaurante restaurante = new Restaurante();

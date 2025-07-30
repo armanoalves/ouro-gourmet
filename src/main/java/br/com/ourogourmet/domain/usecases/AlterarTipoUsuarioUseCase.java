@@ -8,6 +8,6 @@ public interface AlterarTipoUsuarioUseCase {
 
     record AlterarTipoUsuarioCommand(
             Long id,
-            TipoUsuarioEnum tipo){
+            String tipo){
     }
 }

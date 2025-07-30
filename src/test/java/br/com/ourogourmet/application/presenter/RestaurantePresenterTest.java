@@ -28,7 +28,8 @@ class RestaurantePresenterTest {
                 true,
                 "senhaAntiga",
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
 
         usuario.setId("user-123");
         usuario.setNome("João Silva");
@@ -36,6 +37,7 @@ class RestaurantePresenterTest {
         usuario.setLogin("joaosilva");
         usuario.setAtivo(true);
         usuario.setEndereco("Rua A, 123");
+        usuario.setTipoUsuarioId(1L);
 
         Restaurante restaurante = new Restaurante();
         restaurante.setId(1L);
@@ -62,6 +64,7 @@ class RestaurantePresenterTest {
         assertEquals("joaosilva", response.getUsuario().getLogin());
         assertTrue(response.getUsuario().getAtivo());
         assertEquals("Rua A, 123", response.getUsuario().getEndereco());
+        assertEquals(1L, response.getUsuario().getTipoUsuarioId());
     }
 
     @Test
@@ -118,7 +121,8 @@ class RestaurantePresenterTest {
                 true,
                 "senhaAntiga",
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
 
         usuario.setId("user-123");
         usuario.setNome("Maria Silva");

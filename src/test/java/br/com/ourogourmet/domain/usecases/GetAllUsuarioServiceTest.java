@@ -40,7 +40,8 @@ class GetAllUsuarioServiceTest {
                         true,
                         "senha123",
                         LocalDate.now(),
-                        "Rua A, 123"),
+                        "Rua A, 123",
+                        1L),
                 Usuario.create(
                         "Maria Silva",
                         "maria@email.com",
@@ -48,7 +49,8 @@ class GetAllUsuarioServiceTest {
                         true,
                         "senha123",
                         LocalDate.now(),
-                        "Rua A, 345")
+                        "Rua A, 345",
+                        1L)
         );
 
         when(usuarioGateway.findAll(size, expectedOffset)).thenReturn(usuariosMock);
@@ -75,7 +77,8 @@ class GetAllUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345")));
+                "Rua A, 345",
+                1L)));
 
         // Act
         List<Usuario> resultado = getAllUsuarioService.findAll(page, size);
@@ -133,7 +136,8 @@ class GetAllUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345")));
+                "Rua A, 345",
+                1L)));
 
         // Act
         List<Usuario> resultado = getAllUsuarioService.findAll(page, size);
@@ -157,7 +161,8 @@ class GetAllUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345")));
+                "Rua A, 345",
+                1L)));
 
         // Act
         getAllUsuarioService.findAll(page, size);
@@ -180,7 +185,8 @@ class GetAllUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345")));
+                "Rua A, 345",
+                1L)));
 
         // Act
         List<Usuario> resultado = getAllUsuarioService.findAll(page, size);

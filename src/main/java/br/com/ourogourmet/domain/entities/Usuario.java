@@ -21,11 +21,11 @@ public class Usuario {
     private String senha;
     private LocalDate dataAlteracao;
     private String endereco;
-    private TipoUsuario tipoUsuarioId;
+    private Long tipoUsuarioId;
 
     protected Usuario(){}
 
-    public static Usuario create(String nome, String email, String login, Boolean ativo, String senha, LocalDate dataAlteracao, String endereco){
+    public static Usuario create(String nome, String email, String login, Boolean ativo, String senha, LocalDate dataAlteracao, String endereco, Long tipoUsuarioId){
 
         var usuario = new Usuario();
 
@@ -36,6 +36,7 @@ public class Usuario {
         usuario.setSenha(senha);
         usuario.setDataAlteracao(dataAlteracao);
         usuario.setEndereco(endereco);
+        usuario.setTipoUsuarioId(tipoUsuarioId);
 
         return usuario;
     }
@@ -48,7 +49,8 @@ public class Usuario {
                 alterarUsuarioDTO.ativo(),
                 null,
                 LocalDate.now(),
-                alterarUsuarioDTO.endereco());
+                alterarUsuarioDTO.endereco(),
+                alterarUsuarioDTO.tipoUsuarioId());
     }
 
     public static Usuario incluir(CriarUsuarioCommand criarUsuario){
@@ -59,7 +61,8 @@ public class Usuario {
                 criarUsuario.ativo(),
                 criarUsuario.senha(),
                 LocalDate.now(),
-                criarUsuario.endereco());
+                criarUsuario.endereco(),
+                criarUsuario.tipoUsuarioId());
 
         usuario.setId(String.valueOf(UUID.randomUUID()));
         return usuario;
@@ -102,7 +105,7 @@ public class Usuario {
         this.login = login;
     }
 
-    public void setTipoUsuarioId(TipoUsuario tipoUsuarioId) {
+    public void setTipoUsuarioId(Long tipoUsuarioId) {
         this.tipoUsuarioId = tipoUsuarioId;
     }
 }

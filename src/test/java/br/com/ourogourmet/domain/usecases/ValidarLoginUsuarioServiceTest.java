@@ -39,7 +39,8 @@ class ValidarLoginUsuarioServiceTest {
                 true,
                 senha,
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
 
         when(usuarioGateway.findByLogin(login)).thenReturn(usuarioMock);
 
@@ -66,7 +67,8 @@ class ValidarLoginUsuarioServiceTest {
                 true,
                 senhaCorreta,
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
 
         when(usuarioGateway.findByLogin(login)).thenReturn(usuarioMock);
 
@@ -117,7 +119,8 @@ class ValidarLoginUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
 
         when(usuarioGateway.findByLogin(login)).thenReturn(usuarioMock);
 
@@ -141,7 +144,8 @@ class ValidarLoginUsuarioServiceTest {
                 true,
                 senha,
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
 
         when(usuarioGateway.findByLogin(login)).thenReturn(usuarioMock);
 
@@ -167,7 +171,8 @@ class ValidarLoginUsuarioServiceTest {
                 true,
                 senha,
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
 
         when(usuarioGateway.findByLogin(login)).thenReturn(usuarioMock);
 

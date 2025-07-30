@@ -40,7 +40,8 @@ class TrocarSenhaUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
         when(usuarioGateway.findById(id)).thenReturn(usuarioMock);
         when(usuarioGateway.atualizarSenha(any(Usuario.class), eq(id))).thenReturn(1);
 
@@ -83,7 +84,8 @@ class TrocarSenhaUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
         when(usuarioGateway.findById(id)).thenReturn(usuarioMock);
         when(usuarioGateway.atualizarSenha(any(Usuario.class), eq(id))).thenReturn(0);
 
@@ -106,7 +108,8 @@ class TrocarSenhaUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
         when(usuarioGateway.findById(id)).thenReturn(usuarioMock);
         when(usuarioGateway.atualizarSenha(any(Usuario.class), eq(id))).thenReturn(1);
 
@@ -133,7 +136,8 @@ class TrocarSenhaUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
         when(usuarioGateway.findById(id)).thenReturn(usuarioMock);
 
         // Act & Assert
@@ -169,7 +173,8 @@ class TrocarSenhaUsuarioServiceTest {
                 true,
                 "senhaAntiga",
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
 
         when(usuarioGateway.findById(id)).thenReturn(usuarioMock);
         when(usuarioGateway.atualizarSenha(any(Usuario.class), eq(id))).thenReturn(1);

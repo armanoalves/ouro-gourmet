@@ -34,6 +34,11 @@ public class TipoUsuarioGatewayImpl implements TipoUsuarioGateway {
     }
 
     @Override
+    public boolean existePorTipo(String tipo) {
+        return tipoUsuarioJpaRepository.existsByTipoIgnoreCase(tipo);
+    }
+
+    @Override
     public TipoUsuario findById(String id) {
         return tipoUsuarioJpaRepository.findById(Long.parseLong(id))
                 .map(TipoUsuarioEntity::toDomain)

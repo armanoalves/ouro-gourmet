@@ -77,19 +77,21 @@ class UsuarioControllerTest {
                 "senha123",
                 "joao@email.com",
                 "joaosilva",
-                true);
+                true,
+                1L);
 
         alterarUsuarioDTO = new AlterarUsuarioDTO(
                 "João Silva Atualizado",
                 "Rua B, 456",
                 "joao.novo@email.com",
                 "joaosilva",
-                true);
+                true,
+                1L);
 
         trocarSenhaUsuarioDTO = new TrocarSenhaUsuarioDTO("novaSenha123");
         validarLoginUsuarioDTO = new ValidarLoginUsuarioDTO("joaosilva", "senha123");
 
-        usuario = Usuario.create("João Silva","joao@email.com","joao",true,"senha", LocalDate.now(),"Rua das Flores");
+        usuario = Usuario.create("João Silva","joao@email.com","joao",true,"senha", LocalDate.now(),"Rua das Flores", 1L);
 
     }
 

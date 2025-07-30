@@ -54,8 +54,8 @@ class TipoUsuarioControllerTest {
 
     @BeforeEach
     void setUp() {
-        criarTipoUsuarioDTO = new CriarTipoUsuarioDTO(TipoUsuarioEnum.DONO);
-        alterarTipoUsuarioDTO = new AlterarTipoUsuarioDTO(TipoUsuarioEnum.CLIENTE);
+        criarTipoUsuarioDTO = new CriarTipoUsuarioDTO("DONO");
+        alterarTipoUsuarioDTO = new AlterarTipoUsuarioDTO("CLIENTE");
     }
 
     @Test
@@ -117,7 +117,7 @@ class TipoUsuarioControllerTest {
     @Test
     void buscarTipoUsuarioPorId_DeveRetornarTipoUsuario() {
         String id = "1";
-        TipoUsuario tipo = TipoUsuario.create(TipoUsuarioEnum.CLIENTE);
+        TipoUsuario tipo = TipoUsuario.create("CLIENTE");
         when(getByIdTipoUsuario.findById(anyString())).thenReturn(tipo);
 
         ResponseEntity<TipoUsuario> response = controller.findById(id);

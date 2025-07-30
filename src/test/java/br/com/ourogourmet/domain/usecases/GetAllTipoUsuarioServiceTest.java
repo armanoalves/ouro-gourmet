@@ -33,8 +33,8 @@ class GetAllTipoUsuarioServiceTest {
         int offset = 0;
 
         List<TipoUsuario> mockList = Arrays.asList(
-                TipoUsuario.create(TipoUsuarioEnum.DONO),
-                TipoUsuario.create(TipoUsuarioEnum.CLIENTE)
+                TipoUsuario.create("DONO"),
+                TipoUsuario.create("CLIENTE")
         );
 
         when(tipoUsuarioGateway.findAll(size, offset)).thenReturn(mockList);

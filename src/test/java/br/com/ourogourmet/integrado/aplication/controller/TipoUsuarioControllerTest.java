@@ -7,8 +7,11 @@ import br.com.ourogourmet.domain.entities.enums.TipoUsuarioEnum;
 import br.com.ourogourmet.domain.usecases.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.*;
-import org.mockito.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -19,7 +22,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class TipoUsuarioControllerTest {
 
@@ -64,12 +67,12 @@ class TipoUsuarioControllerTest {
 
     @Test
     void deveCriarTipoUsuarioComSucesso() throws Exception {
-        var command = new CriarTipoUsuarioUseCase.CriarTipoUsuarioCommand(TipoUsuarioEnum.CLIENTE);
+        var command = new CriarTipoUsuarioUseCase.CriarTipoUsuarioCommand("CLIENTE");
         when(criarTipoUsuario.execute(any())).thenReturn(1L);
 
         mockMvc.perform(post("/tipo_usuario")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(new CriarTipoUsuarioDTO(TipoUsuarioEnum.CLIENTE))))
+                        .content(asJsonString(new CriarTipoUsuarioDTO("CLIENTE"))))
                 .andExpect(status().isOk());
 
         verify(criarTipoUsuario, times(1)).execute(any());
@@ -87,7 +90,7 @@ class TipoUsuarioControllerTest {
 
     @Test
     void deveBuscarTipoUsuarioPorIdComSucesso() throws Exception {
-        TipoUsuario tipoUsuario = TipoUsuario.create(TipoUsuarioEnum.DONO);
+        TipoUsuario tipoUsuario = TipoUsuario.create("DONO");
         tipoUsuario.setId(1L);
         when(getByIdTipoUsuario.findById("1")).thenReturn(tipoUsuario);
 
@@ -104,7 +107,7 @@ class TipoUsuarioControllerTest {
 
         mockMvc.perform(put("/tipo_usuario/1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(new AlterarTipoUsuarioDTO(TipoUsuarioEnum.CLIENTE))))
+                        .content(asJsonString(new AlterarTipoUsuarioDTO("CLIENTE"))))
                 .andExpect(status().isNoContent());
 
         verify(alterarTipoUsuario).execute(any());
@@ -127,6 +130,6 @@ class TipoUsuarioControllerTest {
     }
 
     // DTOs para o teste
-    record CriarTipoUsuarioDTO(TipoUsuarioEnum tipoUsuarioEnum) {}
-    record AlterarTipoUsuarioDTO(TipoUsuarioEnum tipoUsuario) {}
+    record CriarTipoUsuarioDTO(String tipoUsuario) {}
+    record AlterarTipoUsuarioDTO(String tipoUsuario) {}
 }

@@ -35,7 +35,8 @@ class GetByIdUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
 
         usuarioMock.setId(id);
 
@@ -84,7 +85,8 @@ class GetByIdUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
         when(usuarioGateway.findById(id)).thenReturn(usuarioMock);
 
         // Act
@@ -106,7 +108,8 @@ class GetByIdUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
         when(usuarioGateway.findById(idNumerico)).thenReturn(usuario1);
         assertNotNull(getByIdUsuarioService.findById(idNumerico));
 
@@ -119,7 +122,8 @@ class GetByIdUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
         when(usuarioGateway.findById(uuid)).thenReturn(usuario2);
         assertNotNull(getByIdUsuarioService.findById(uuid));
 
@@ -132,7 +136,8 @@ class GetByIdUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
         when(usuarioGateway.findById(stringComplexa)).thenReturn(usuario3);
         assertNotNull(getByIdUsuarioService.findById(stringComplexa));
 
@@ -150,7 +155,8 @@ class GetByIdUsuarioServiceTest {
                 true,
                 "senha123",
                 LocalDate.now(),
-                "Rua A, 345");
+                "Rua A, 345",
+                1L);
         usuarioMock.setId(id);
         usuarioMock.setNome("João Silva");
         usuarioMock.setEmail("joao@email.com");

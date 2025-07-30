@@ -6,6 +6,7 @@ import br.com.ourogourmet.domain.entities.TipoUsuario;
 import br.com.ourogourmet.domain.exceptions.TipoUsuarioCamposInvalidosException;
 import br.com.ourogourmet.domain.usecases.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.Data;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
@@ -68,7 +69,7 @@ public class TipoUsuarioController {
     public ResponseEntity<Void> criarTipoUsuario(
             @RequestBody CriarTipoUsuarioDTO dto) {
 
-        var cmd = new CriarTipoUsuarioUseCase.CriarTipoUsuarioCommand(dto.tipoUsuarioEnum());
+        var cmd = new CriarTipoUsuarioUseCase.CriarTipoUsuarioCommand(dto.tipoUsuario());
         var id = criarTipoUsuario.execute(cmd);
 
         ResponseEntity.created(fromPath(TipoUsuarioController.PATH + "/{id}").build(id)).build();
@@ -88,7 +89,7 @@ public class TipoUsuarioController {
             throw new TipoUsuarioCamposInvalidosException(erros);
 
         var cmd = new AlterarTipoUsuarioUseCase.AlterarTipoUsuarioCommand(id,
-                dto.tipoUsuario());
+                dto.tipo());
 
         this.alterarTipoUsuario.execute(cmd);
 

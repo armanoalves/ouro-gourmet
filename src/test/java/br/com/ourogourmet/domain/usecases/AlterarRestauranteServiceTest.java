@@ -51,7 +51,7 @@ class AlterarRestauranteServiceTest {
         restauranteExistente.setId(restauranteId);
         restauranteExistente.setNome("Nome Antigo");
 
-        Usuario usuario = Usuario.create("João Silva","joao@email.com","login",true,"senha", LocalDate.now(),"Rua da Glória, 355");
+        Usuario usuario = Usuario.create("João Silva","joao@email.com","login",true,"senha", LocalDate.now(),"Rua da Glória, 355", 1L);
         usuario.setId(usuarioId);
 
         when(restauranteGateway.buscarPorId(restauranteId)).thenReturn(Optional.of(restauranteExistente));

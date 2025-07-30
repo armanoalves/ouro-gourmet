@@ -106,11 +106,12 @@ public class UsuarioController {
         if (!erros.isEmpty())
             throw new UsuarioCamposInvalidosException(erros);
 
-        this.alterarUsuario.update( new AlterarUsuarioCommand(usuario.nome(),
+        this.alterarUsuario.update(
+                new AlterarUsuarioCommand(
+                        usuario.nome(),
                         usuario.endereco(),
                         usuario.email(),
-                        usuario.login(),
-                        usuario.ativo())
+                        usuario.login(), usuario.ativo(), usuario.tipoUsuarioId())
                 ,id);
 
         var status = HttpStatus.NO_CONTENT;

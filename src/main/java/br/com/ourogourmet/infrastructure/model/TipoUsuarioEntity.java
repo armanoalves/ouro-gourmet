@@ -15,8 +15,8 @@ public class TipoUsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(EnumType.STRING)
-    private TipoUsuarioEnum tipo;
+    @Column(nullable = false, unique = true, length = 50)
+    private String tipo;
 
     protected TipoUsuarioEntity(){}
 
