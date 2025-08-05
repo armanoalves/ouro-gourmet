@@ -3,7 +3,6 @@ package br.com.ourogourmet.application.controller;
 import br.com.ourogourmet.application.controller.dtos.AlterarTipoUsuarioDTO;
 import br.com.ourogourmet.application.controller.dtos.CriarTipoUsuarioDTO;
 import br.com.ourogourmet.domain.entities.TipoUsuario;
-import br.com.ourogourmet.domain.entities.enums.TipoUsuarioEnum;
 import br.com.ourogourmet.domain.exceptions.TipoUsuarioCamposInvalidosException;
 import br.com.ourogourmet.domain.usecases.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,7 +59,6 @@ class TipoUsuarioControllerTest {
 
     @Test
     void criarTipoUsuario_ComDadosValidos_DeveRetornarOk() {
-        when(validator.validateObject(any())).thenReturn(new BeanPropertyBindingResult(criarTipoUsuarioDTO, "criarTipoUsuarioDTO"));
         when(criarTipoUsuario.execute(any())).thenReturn(1L);
 
         ResponseEntity<Void> response = controller.criarTipoUsuario(criarTipoUsuarioDTO);

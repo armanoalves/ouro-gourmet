@@ -63,7 +63,7 @@ class RestauranteEntityRepositoryTest {
                         "senha123",
                         LocalDate.now(),
                         "Rua A, 345",
-                        1L));
+                        2L));
 
         // Arrange
         Long id = 1L;

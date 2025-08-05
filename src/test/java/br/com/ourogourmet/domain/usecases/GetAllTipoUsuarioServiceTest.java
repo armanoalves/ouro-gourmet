@@ -1,7 +1,6 @@
 package br.com.ourogourmet.domain.usecases;
 
 import br.com.ourogourmet.domain.entities.TipoUsuario;
-import br.com.ourogourmet.domain.entities.enums.TipoUsuarioEnum;
 import br.com.ourogourmet.domain.gateway.TipoUsuarioGateway;
 import br.com.ourogourmet.domain.usecases.implementations.GetAllTipoUsuarioService;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class GetAllTipoUsuarioServiceTest {

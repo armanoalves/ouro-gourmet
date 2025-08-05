@@ -1,9 +1,8 @@
-package br.com.ourogourmet.integrado.controller;
+package br.com.ourogourmet.integrado.aplication.controller;
 
 import br.com.ourogourmet.application.controller.TipoUsuarioController;
 import br.com.ourogourmet.application.response.GlobalExceptionHandle;
 import br.com.ourogourmet.domain.entities.TipoUsuario;
-import br.com.ourogourmet.domain.entities.enums.TipoUsuarioEnum;
 import br.com.ourogourmet.domain.usecases.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,7 +46,7 @@ class TipoUsuarioControllerTest {
     private Validator validator;
 
     private AutoCloseable closeable;
-
+    private final String path = TipoUsuarioController.PATH;
     @BeforeEach
     void setUp() {
         closeable = MockitoAnnotations.openMocks(this);
@@ -70,7 +69,7 @@ class TipoUsuarioControllerTest {
         var command = new CriarTipoUsuarioUseCase.CriarTipoUsuarioCommand("CLIENTE");
         when(criarTipoUsuario.execute(any())).thenReturn(1L);
 
-        mockMvc.perform(post("/tipo_usuario")
+        mockMvc.perform(post(path)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(new CriarTipoUsuarioDTO("CLIENTE"))))
                 .andExpect(status().isOk());
@@ -82,7 +81,7 @@ class TipoUsuarioControllerTest {
     void deveBuscarTodosTipoUsuarioComSucesso() throws Exception {
         when(getAllTipoUsuario.findAll(anyInt(), anyInt())).thenReturn(List.of());
 
-        mockMvc.perform(get("/tipo_usuario?page=1&size=10"))
+        mockMvc.perform(get(path + "?page=1&size=10"))
                 .andExpect(status().isOk());
 
         verify(getAllTipoUsuario).findAll(1, 10);
@@ -94,7 +93,7 @@ class TipoUsuarioControllerTest {
         tipoUsuario.setId(1L);
         when(getByIdTipoUsuario.findById("1")).thenReturn(tipoUsuario);
 
-        mockMvc.perform(get("/tipo_usuario/1"))
+        mockMvc.perform(get(path + "/1"))
                 .andExpect(status().isOk());
 
         verify(getByIdTipoUsuario).findById("1");
@@ -105,7 +104,7 @@ class TipoUsuarioControllerTest {
         when(validator.validateObject(any()))
                 .thenReturn(new BeanPropertyBindingResult(new Object(), "objectName"));
 
-        mockMvc.perform(put("/tipo_usuario/1")
+        mockMvc.perform(put(path + "/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(new AlterarTipoUsuarioDTO("CLIENTE"))))
                 .andExpect(status().isNoContent());
@@ -115,7 +114,7 @@ class TipoUsuarioControllerTest {
 
     @Test
     void deveDeletarTipoUsuarioComSucesso() throws Exception {
-        mockMvc.perform(delete("/tipo_usuario/1"))
+        mockMvc.perform(delete(path + "/1"))
                 .andExpect(status().isOk());
 
         verify(deletarTipoUsuario).delete("1");

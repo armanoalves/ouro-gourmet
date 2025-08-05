@@ -1,7 +1,6 @@
 package br.com.ourogourmet.infrastructure.model;
 
 import br.com.ourogourmet.domain.entities.TipoUsuario;
-import br.com.ourogourmet.domain.entities.enums.TipoUsuarioEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

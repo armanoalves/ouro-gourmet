@@ -6,7 +6,6 @@ import br.com.ourogourmet.domain.entities.TipoUsuario;
 import br.com.ourogourmet.domain.exceptions.TipoUsuarioCamposInvalidosException;
 import br.com.ourogourmet.domain.usecases.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.Data;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
@@ -21,8 +20,8 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 
 @Data
 @RestController
-@RequestMapping("/tipo_usuario")
-@Tag(name="Tipo_Usuario", description = "Cadastro tipo de usuario")
+@RequestMapping("/tipoUsuario")
+@Tag(name="Tipo Usuário", description = "Cadastro de tipo de usuario")
 public class TipoUsuarioController {
 
     private final CriarTipoUsuarioUseCase criarTipoUsuario;
@@ -32,7 +31,7 @@ public class TipoUsuarioController {
     private final GetByIdTipoUsuarioUseCase getByIdTipoUsuario;
     private final Validator validator;
 
-    public static final String PATH = "/tipo_usuario";
+    public static final String PATH = "/tipoUsuario";
 
     public TipoUsuarioController(CriarTipoUsuarioUseCase criarTipoUsuario,
                                  AlterarTipoUsuarioUseCase alterarTipoUsuario,

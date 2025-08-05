@@ -1,6 +1,5 @@
 package br.com.ourogourmet.domain.usecases;
 
-import br.com.ourogourmet.domain.entities.enums.TipoUsuarioEnum;
 import br.com.ourogourmet.domain.gateway.TipoUsuarioGateway;
 import br.com.ourogourmet.domain.usecases.AlterarTipoUsuarioUseCase.AlterarTipoUsuarioCommand;
 import br.com.ourogourmet.domain.usecases.implementations.AlterarTipoUsuarioService;

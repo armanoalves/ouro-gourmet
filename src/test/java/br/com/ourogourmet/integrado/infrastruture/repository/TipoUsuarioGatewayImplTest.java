@@ -1,7 +1,6 @@
 package br.com.ourogourmet.integrado.infrastruture.repository;
 
 import br.com.ourogourmet.domain.entities.TipoUsuario;
-import br.com.ourogourmet.domain.entities.enums.TipoUsuarioEnum;
 import br.com.ourogourmet.domain.exceptions.TipoUsuarioNaoEncontradoException;
 import br.com.ourogourmet.domain.usecases.AlterarTipoUsuarioUseCase;
 import br.com.ourogourmet.infrastructure.repository.TipoUsuarioGatewayImpl;
@@ -39,7 +38,7 @@ class TipoUsuarioGatewayImplTest {
 
         assertNotNull(tipoUsuario);
         assertEquals(101L, tipoUsuario.getId());
-        assertEquals(TipoUsuarioEnum.DONO, tipoUsuario.getTipo());
+        assertEquals("DONO", tipoUsuario.getTipo());
     }
 
     @Test
@@ -62,7 +61,7 @@ class TipoUsuarioGatewayImplTest {
 
     @Test
     void deveIncluirTipoUsuarioComSucesso() {
-        TipoUsuario tipoUsuario = TipoUsuario.create("CLIENTE");
+        TipoUsuario tipoUsuario = TipoUsuario.create("MODERADOR");
 
         Long idSalvo = tipoUsuarioGateway.incluir(tipoUsuario);
 
@@ -80,7 +79,7 @@ class TipoUsuarioGatewayImplTest {
 
         TipoUsuario alterado = tipoUsuarioGateway.findById(id.toString());
 
-        assertEquals(TipoUsuarioEnum.CLIENTE, alterado.getTipo());
+        assertEquals("CLIENTE", alterado.getTipo());
     }
 
     @Test

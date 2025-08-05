@@ -1,7 +1,6 @@
 package br.com.ourogourmet.domain.usecases;
 
 import br.com.ourogourmet.domain.entities.TipoUsuario;
-import br.com.ourogourmet.domain.entities.enums.TipoUsuarioEnum;
 import br.com.ourogourmet.domain.gateway.TipoUsuarioGateway;
 import br.com.ourogourmet.domain.usecases.implementations.CriarTipoUsuarioService;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

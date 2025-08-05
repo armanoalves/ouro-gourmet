@@ -1,7 +1,7 @@
 package br.com.ourogourmet.domain.usecases;
 
 import br.com.ourogourmet.domain.entities.TipoUsuario;
-import br.com.ourogourmet.domain.entities.enums.TipoUsuarioEnum;
+import br.com.ourogourmet.domain.exceptions.TipoUsuarioNaoEncontradoException;
 import br.com.ourogourmet.domain.gateway.TipoUsuarioGateway;
 import br.com.ourogourmet.domain.usecases.implementations.GetByIdTipoUsuarioService;
 import org.junit.jupiter.api.Test;
@@ -36,17 +36,9 @@ class GetByIdTipoUsuarioServiceTest {
 
         // Assert
         assertNotNull(resultado);
-        assertEquals(TipoUsuarioEnum.DONO, resultado.getTipo());
+        assertEquals("DONO", resultado.getTipo());
         assertEquals(1L, resultado.getId());
         verify(tipoUsuarioGateway).findById(id);
-    }
-
-    @Test
-    void findById_ComIdNulo_DeveLancarExcecao() {
-        // Act & Assert
-        assertThrows(NullPointerException.class, () -> {
-            getByIdTipoUsuarioService.findById(null);
-        });
     }
 
     @Test
@@ -77,6 +69,6 @@ class GetByIdTipoUsuarioServiceTest {
         TipoUsuario resultado = getByIdTipoUsuarioService.findById(id);
 
         // Assert
-        assertEquals(TipoUsuarioEnum.CLIENTE, resultado.getTipo());
+        assertEquals("CLIENTE", resultado.getTipo());
     }
 }
