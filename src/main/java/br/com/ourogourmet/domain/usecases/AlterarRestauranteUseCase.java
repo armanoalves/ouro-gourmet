@@ -13,8 +13,7 @@ public interface AlterarRestauranteUseCase {
             String nome,
             String tipoCozinha,
             LocalTime horarioFuncionamentoDe,
-            LocalTime horarioFuncionamentoAte,
-            String usuarioId){
+            LocalTime horarioFuncionamentoAte){
 
     }
 }

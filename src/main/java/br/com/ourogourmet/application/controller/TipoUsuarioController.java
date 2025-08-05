@@ -68,7 +68,7 @@ public class TipoUsuarioController {
     public ResponseEntity<Void> criarTipoUsuario(
             @RequestBody CriarTipoUsuarioDTO dto) {
 
-        var cmd = new CriarTipoUsuarioUseCase.CriarTipoUsuarioCommand(dto.tipoUsuario());
+        var cmd = new CriarTipoUsuarioUseCase.CriarTipoUsuarioCommand(dto.tipo());
         var id = criarTipoUsuario.execute(cmd);
 
         ResponseEntity.created(fromPath(TipoUsuarioController.PATH + "/{id}").build(id)).build();

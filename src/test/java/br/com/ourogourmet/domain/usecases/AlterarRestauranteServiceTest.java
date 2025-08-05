@@ -44,8 +44,7 @@ class AlterarRestauranteServiceTest {
                 "Novo Nome",
                 "Japonesa",
                 LocalTime.of(11, 0),
-                LocalTime.of(23, 0),
-                usuarioId);
+                LocalTime.of(23, 0));
 
         Restaurante restauranteExistente = new Restaurante();
         restauranteExistente.setId(restauranteId);
@@ -80,8 +79,7 @@ class AlterarRestauranteServiceTest {
                 "Nome Qualquer",
                 "Tipo Qualquer",
                 LocalTime.of(10, 0),
-                LocalTime.of(22, 0),
-                null);
+                LocalTime.of(22, 0));
 
         when(restauranteGateway.buscarPorId(restauranteId)).thenReturn(Optional.empty());
 
@@ -104,8 +102,7 @@ class AlterarRestauranteServiceTest {
                 "Nome Duplicado",
                 "Italiana",
                 LocalTime.of(10, 0),
-                LocalTime.of(22, 0),
-                null);
+                LocalTime.of(22, 0));
 
         Restaurante restauranteExistente = new Restaurante();
         restauranteExistente.setId(restauranteId);
@@ -134,8 +131,7 @@ class AlterarRestauranteServiceTest {
                 "Mesmo Nome",
                 "Italiana",
                 LocalTime.of(10, 0),
-                LocalTime.of(22, 0),
-                null);
+                LocalTime.of(22, 0));
 
         Restaurante restauranteExistente = new Restaurante();
         restauranteExistente.setId(restauranteId);
@@ -160,8 +156,7 @@ class AlterarRestauranteServiceTest {
                 "Restaurante Sem Usuário",
                 "Italiana",
                 LocalTime.of(10, 0),
-                LocalTime.of(22, 0),
-                null);
+                LocalTime.of(22, 0));
 
         Restaurante restauranteExistente = new Restaurante();
         restauranteExistente.setId(restauranteId);

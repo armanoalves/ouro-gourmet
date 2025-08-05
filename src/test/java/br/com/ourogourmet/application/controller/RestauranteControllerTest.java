@@ -80,8 +80,8 @@ class RestauranteControllerTest {
                 "Restaurante Teste Atualizado",
                 "Italiana",
                 "11:00",
-                "23:00",
-                new AlterarUsuarioRestauranteDTO("1"));
+                "23:00"
+                );
 
         alterarUsuarioRestauranteDTO = new AlterarUsuarioRestauranteDTO("2");
 

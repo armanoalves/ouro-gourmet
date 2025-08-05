@@ -30,7 +30,6 @@ public class AlterarRestauranteService implements AlterarRestauranteUseCase {
         restaurante.setNome(restauranteCommand.nome());
         restaurante.setTipoCozinha(restauranteCommand.tipoCozinha());
         restaurante.setHorarioFuncionamento(restauranteCommand.horarioFuncionamentoDe(),restauranteCommand.horarioFuncionamentoAte());
-        restaurante.setUsuario( nonNull(restauranteCommand.usuarioId()) ? usuarioRepository.findById(restauranteCommand.usuarioId()) : null );
         restauranteRepository.alterar(restaurante);
 
     }

@@ -18,8 +18,5 @@ public record AlterarCardapioDTO(
         String foto,
 
         @NotNull
-        Boolean cosumoLocal,
-
-        @NotNull
-        LocalDateTime dataAtualizacao) {
+        Boolean cosumoLocal) {
 }

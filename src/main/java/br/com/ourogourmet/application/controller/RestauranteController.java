@@ -83,8 +83,7 @@ public class RestauranteController {
                 dto.nome(),
                 dto.tipoCozinha(),
                 LocalTime.parse(dto.horaFuncionamentoDe()),
-                LocalTime.parse(dto.horarioFuncionamentoAte()),
-                dto.usuario().id());
+                LocalTime.parse(dto.horarioFuncionamentoAte()));
 
         this.alterarRestauranteUseCase.execute(cmd,new RestauranteEntityRepository(restauranteRepository) );
 
