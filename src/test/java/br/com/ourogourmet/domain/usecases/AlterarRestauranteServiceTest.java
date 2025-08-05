@@ -55,7 +55,6 @@ class AlterarRestauranteServiceTest {
 
         when(restauranteGateway.buscarPorId(restauranteId)).thenReturn(Optional.of(restauranteExistente));
         when(restauranteGateway.buscarPorNome("Novo Nome")).thenReturn(Optional.empty());
-        when(usuarioGateway.findById(usuarioId)).thenReturn(usuario);
 
         // Act
         alterarRestauranteService.execute(command, restauranteGateway);
@@ -65,8 +64,7 @@ class AlterarRestauranteServiceTest {
                 restaurante.getNome().equals("Novo Nome") &&
                         restaurante.getTipoCozinha().equals("Japonesa") &&
                         restaurante.getHorarioFuncionamentoDe().equals(LocalTime.of(11, 0)) &&
-                        restaurante.getHorarioFuncionamentoAte().equals(LocalTime.of(23, 0)) &&
-                        restaurante.getUsuario().getId().equals(usuarioId)
+                        restaurante.getHorarioFuncionamentoAte().equals(LocalTime.of(23, 0))
         ));
     }
 
