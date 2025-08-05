@@ -1,12 +1,16 @@
 package br.com.ourogourmet.infrastructure.adapter.repository;
 
 import br.com.ourogourmet.domain.entities.Restaurante;
+import br.com.ourogourmet.domain.entities.TipoUsuario;
 import br.com.ourogourmet.domain.entities.Usuario;
 import br.com.ourogourmet.infrastructure.model.RestauranteEntity;
 import br.com.ourogourmet.infrastructure.repository.RestauranteEntityRepository;
 import br.com.ourogourmet.infrastructure.repository.RestauranteRepository;
+import org.apache.commons.logging.Log;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.commons.logging.Logger;
+import org.junit.platform.commons.logging.LoggerFactory;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -31,6 +35,7 @@ class RestauranteEntityRepositoryTest {
 
     @InjectMocks
     private RestauranteEntityRepository restauranteEntityRepository;
+
 
     @Test
     void incluir_DeveSalvarERetornarId() {
@@ -63,7 +68,7 @@ class RestauranteEntityRepositoryTest {
                         "senha123",
                         LocalDate.now(),
                         "Rua A, 345",
-                        2L));
+                        TipoUsuario.create(10L, "ADMIN").getId()));
 
         // Arrange
         Long id = 1L;
@@ -108,7 +113,7 @@ class RestauranteEntityRepositoryTest {
                         "senha123",
                         LocalDate.now(),
                         "Rua A, 345",
-                        1L));
+                        TipoUsuario.create(11L, "AUXILIAR").getId()));
         RestauranteEntity entity = new RestauranteEntity(restaurante);
 
         when(restauranteRepository.findByNome(nome)).thenReturn(Optional.of(entity));
@@ -138,7 +143,7 @@ class RestauranteEntityRepositoryTest {
                         "senha123",
                         LocalDate.now(),
                         "Rua A, 345",
-                        1L));
+                        TipoUsuario.create(12L, "SUPERVISOR").getId()));
 
         RestauranteEntity entity1 = new RestauranteEntity(restaurante1);
 
@@ -151,7 +156,7 @@ class RestauranteEntityRepositoryTest {
                         "senha123",
                         LocalDate.now(),
                         "Rua A, 345",
-                        1L));
+                        TipoUsuario.create(14L, "SUPERIOR").getId()));
 
         RestauranteEntity entity2 = new RestauranteEntity(restaurante2);
         Page<RestauranteEntity> pageResult = new PageImpl<>(List.of(entity1, entity2));
@@ -207,7 +212,8 @@ class RestauranteEntityRepositoryTest {
                 "senha123",
                 LocalDate.now(),
                 "Rua A, 345",
-                1L);
+                TipoUsuario.create(15L, "ADMINASTRADOR").getId());
+
         usuario.setId("user-123");
 
         Restaurante restaurante = new Restaurante();

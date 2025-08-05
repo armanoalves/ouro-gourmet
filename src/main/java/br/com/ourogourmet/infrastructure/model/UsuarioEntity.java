@@ -9,6 +9,8 @@ import lombok.Data;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import static java.util.Objects.nonNull;
+
 @Data
 @Entity
 @Table(name="usuario")
@@ -40,6 +42,7 @@ public class UsuarioEntity {
         this.senha = usuario.getSenha();
         this.dataAlteracao = usuario.getDataAlteracao();
         this.endereco = usuario.getEndereco();
+        this.tipoUsuarioId = nonNull(usuario.getTipoUsuarioId()) ?  new TipoUsuarioEntity() : null;
     }
 
     public Usuario toDomain(){
